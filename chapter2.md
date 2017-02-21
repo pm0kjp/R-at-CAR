@@ -38,7 +38,9 @@ test_mc(correct = 4, feedback_msgs = c(msg_data_dic, msg_online_designer, msg_ap
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:bb4ff05dee
 ## Starting With REDCap
 
-Log in to CHOP's REDCap instance at [https://redcap.research.chop.edu/](https://redcap.research.chop.edu/).  Use your CHOP username and password that you use for other CHOP things, like email.
+Log in to CHOP's REDCap instance at [https://redcap.research.chop.edu/](https://redcap.research.chop.edu/).  Use your CHOP username and password that you use for other CHOP things, like email.  
+
+*Note: If this is the first time you've logged in, you'll need to fill out your "Profile".  Make sure that the primary email address you add there is your CHOP email!  After finishing your profile, you may need to "return to previous page" and login again.*
 
 Which one of these is represented in the tabs across the top?
 *** =instructions
@@ -90,4 +92,141 @@ The video is just four minutes long, watch it again!
 msg_bad <- "No, this is a supported data entry method shown in the video!"
 msg_good <- "You're right.  A signature box was not shown.  But that *is* a kind of data entry method you can add in REDCap!"
 test_mc(correct = 1, feedback_msgs = c(msg_good, msg_bad, msg_bad, msg_bad, msg_bad))
+```
+
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:b560dfee00
+## Your First REDCap Database!
+
+Now it's time to create your first REDCap database.  If you're not already logged in to CHOP's REDCap instance, do so now.  Go to the main REDCap home page.  If you're within a project, you can get there by clicking on the REDCap logo in the upper left.  Not in a project?  Then just click on the Home tab.  Familiarize yourself with the information that's available on this Home tab -- boilerplate security language, a "Getting Started" document, your username and profile, the version of REDCap, and more!
+
+Now, time to create your first database!
+
+- Click on "Create New Project"
+- Add a meaningful title, like "Joe's First REDCap DB".  
+- For Purpose, choose "Practice / Just for fun."  
+- Add some project notes!
+- In answer to the question "Start project from scratch or begin with a template?", choose the template option, and select "Classic Database."
+
+What data collection instruments are in your project?
+*** =instructions
+-  Demographics, Consent, Baseline Data, Final Data
+-  Demographics, Baseline Data, Month 1 Data, Month 2 Data, Month 3 Data, Completion Data
+-  Consent, Genomic Data, Phenotypic Data, Outcome Measure 1, Outcome Measure 2
+-  Consent, Baseline Data, Genomic Data, Month 1 Data, Month 2 Data, Month 3 Data
+
+*** =hint
+- Can't log in to REDCap?  Are you using the correct CHOP id and password?
+- Can't create a database?  Does your profile have your CHOP email address as your primary address?
+
+*** =pre_exercise_code
+```{r}
+# None
+```
+
+*** =sct
+```{r}
+msg_bad <- "No, I don't think you've gotten it quite right!"
+msg_good <- "You've got it!  Congrats on making your first REDCap database!"
+test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_good, msg_bad, msg_bad))
+```
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:45aefb0a9f
+## Edit a field
+
+The next few questions depend on you being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).
+
+Please watch the second video, "Detailed Overview", in the "Just Getting Started?" section.  You need to have your own REDCap database open so you can follow along with the Detailed Overview Video.
+
+Go into the Online Designer for your database, and click on the Demographics instrument in order to edit it.
+Then edit the question that has the text "Date subject signed consent".
+
+Which field shows up as a "Small reminder text" beneath the data entry box, reading YYYY-MM-DD?
+
+*** =instructions
+- Field Annotation
+- Validation
+- Field Label
+- Field Note
+*** =hint
+
+Try rewatching starting at 4:50 to see how to get into the Online Designer and edit a field.
+
+*** =pre_exercise_code
+```{r}
+# None
+```
+
+*** =sct
+```{r}
+msg_bad <- "No, not quite!"
+msg_good <- "You're right.  A Field Note helps prompt data entry personnel so that they input the right kind of data with the right format!"
+test_mc(correct = 4, feedback_msgs = c(msg_bad, msg_bad, msg_bad, msg_good))
+```
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:23033c3f56
+## Using the Online Designer
+
+The next few questions depend on you being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).
+
+Please watch the second video, "Detailed Overview", in the "Just Getting Started?" section.  You need to have your own REDCap database open so you can follow along with the Detailed Overview Video.
+
+Using what you've learned, go into the Online Designer for your database, and click on the Demographics instrument in order to edit it.
+
+Then edit the question that has the text "Date subject signed consent".  You can do this by clicking on the pencil icon.
+
+Which field shows up as a "Small reminder text" beneath the data entry box, reading YYYY-MM-DD?
+
+*** =instructions
+- Field Annotation
+- Validation
+- Field Label
+- Field Note
+*** =hint
+
+Try rewatching starting at 4:50 to see how to get into the Online Designer.  The video shows how to create new fields, but it's easy to edit existing fields by clicking on the pencil.
+
+*** =pre_exercise_code
+```{r}
+# None
+```
+
+*** =sct
+```{r}
+msg_bad <- "No, not quite!"
+msg_good <- "You're right.  A Field Note helps prompt data entry personnel so that they input the right kind of data with the right format!"
+test_mc(correct = 4, feedback_msgs = c(msg_bad, msg_bad, msg_bad, msg_good))
+```
+
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3fc1f46a4a
+## Data Entry
+
+The next few questions depend on you being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).
+
+Please watch the second video, "Detailed Overview", in the "Just Getting Started?" section.  You need to have your own REDCap database open so you can follow along with the Detailed Overview Video.
+
+Using what you've learned, add some new data for subject CAR-123.  The data you're going to enter is a completely blank Demographics form.  Don't add or change anything, and click "Save Record".
+
+What error message do you receive?
+
+*** =instructions
+- "Please add First Name, Last Name before saving."
+- "Invalid Consent date -- please check data!"
+- "Incomplete data, would you like to continue?"
+- No error message, the record saves with the message "Study ID CAR-123 successfully edited".
+
+*** =hint
+
+Try rewatching starting at 8:30 to see how to add data.  In the case of your database, you won't see an "Add new record" button, you'll see a box that is labeled "Enter a new or existing Study ID".  That's where you'll enter your subject's ID and then hit enter.
+
+*** =pre_exercise_code
+```{r}
+# None
+```
+
+*** =sct
+```{r}
+msg_bad <- "No, not quite!"
+msg_good <- "You're right.  There are no errors, but we can imagine that we want errors to pop up.  We should make some of our fields 'required'."
+test_mc(correct = 4, feedback_msgs = c(msg_bad, msg_bad, msg_bad, msg_good))
 ```
