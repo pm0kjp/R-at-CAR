@@ -39,14 +39,15 @@ test_mc(correct = 2, feedback_msgs = c(msg_transcript, msg_survey, msg_voice,  m
 
 In the previous question, you learned that a parent survey could be easily made into a tabular structure.  Here, let's create some tabular data for a parent questionnaire with five questions.  We'll call it the Particular Interests Inventory, or PII.
 
-In R, we'll use a data frame to create a six column data structure.  The first column will be titled "ID", and the other columns will be titled "Question1", "Question2",... "Question5".  
+In R, we'll use a data frame to create a six column data structure.  The first column will be titled "ID", and the other columns will be titled "Question1", "Question2",... "Question5".  This should be review for you.  If not, you may want to consider the [DataCamp Introduction to R Course](https://www.datacamp.com/courses/free-introduction-to-r).
 
 
 *** =instructions
-- Create a data frame with just one row, using this code: `pii <- data.frame("ID" = "CAR-123", "Question1" = "Y", "Question2" = "N", "Question3"= "Y", "Question4" = "Y", "Question5" = "N")`
+- Create a data frame named "pii" with just one row, using these parameters: "ID" = "CAR-123";  "Question1" = "Y"; "Question2" = "N"; "Question3"= "Y"; "Question4" = "Y"; "Question5" = "N")
 
 *** =hint
-- Make sure your quotes are correct -- do they have opening and closing quotes?
+- `?data.frame()` might help you!  Type it into the console.
+- Make sure your quotes are correct -- do you use opening and closing quotes?
 
 *** =pre_exercise_code
 ```{r}
@@ -56,20 +57,20 @@ In R, we'll use a data frame to create a six column data structure.  The first c
 *** =sample_code
 ```{r}
 # Create a data frame with one row
-pii <- data.frame("ID" = "CAR-123", "Question1" = "Y", "Question2" = "N", "Question3"= "Y", "Question4" = "Y", "Question5" = "N")
+pii <-  # Add your code here!
 ```
 
 *** =solution
 ```{r}
 # Create a data frame with one row, using data.frame.
-pii <- data.frame # Add your code here!
+pii <- data.frame("ID" = "CAR-123", "Question1" = "Y", "Question2" = "N", "Question3"= "Y", "Question4" = "Y", "Question5" = "N")
 ```
 
 *** =sct
 ```{r}
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
 
-test_function("data.frame",
+test_function("data.frame", args = c("ID", "Question1", "Question2", "Question3", "Question4", "Question5"),
               not_called_msg = "You didn't call `data.frame()`!",
               incorrect_msg = "You didn't call `data.frame()` with the correct arguments.")
 
@@ -77,5 +78,90 @@ test_object("pii")
 
 test_error()
 
-success_msg("Good work!")
+success_msg("Good work! You created a data frame!")
+```
+
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:ab1e3a396a
+## Creating a Data Frame from a CSV
+
+In the previous question, you created a data frame that held answers from a parent survey.  Here, let's create a data frame from a csv using read.csv()  This should be review for you.  If not, you may want to consider the [DataCamp Introduction to R Course](https://www.datacamp.com/courses/free-introduction-to-r).
+
+We're going to use data found at
+https://raw.githubusercontent.com/pm0kjp/datastore/master/pii.csv
+
+*** =instructions
+- Create a data frame named "pii" that contains the data found in [the URL above](https://raw.githubusercontent.com/pm0kjp/datastore/master/pii.csv).  Hint: right click on the link and copy the link address, since the URL is long.
+
+
+*** =hint
+- `?read.csv()` might help you!  Type it into the console.
+- Did you quote the URL?
+
+*** =pre_exercise_code
+```{r}
+# None
+```
+
+*** =sample_code
+```{r}
+# Create a data frame with one row
+pii <- read.csv # Add your code here!
+```
+
+*** =solution
+```{r}
+# Create a data frame with one row, using data.frame.
+pii <- read.csv("https://raw.githubusercontent.com/pm0kjp/datastore/master/pii.csv")
+```
+
+*** =sct
+```{r}
+# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
+
+test_function("read.csv",
+              not_called_msg = "You didn't call `read.csv()`!",
+              incorrect_msg = "You didn't call `read.csv()` with the correct arguments.")
+
+test_object("pii")
+
+test_error()
+
+success_msg("Good work! You created a data frame from a CSV!")
+```
+
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:72cb3bbfc0
+## Analyzing Tabular Data
+
+
+
+*** =instructions
+There are lots of ways to do this, but see if you can figure out how many "Y" values are given as the response to Question 3 in the pii data frame.  Assign that value to the variable numYes.
+
+*** =hint
+- Try using `pii$Question3 == "Y"` as your condition.
+- `?which()` might help you!
+- `?length()` might help you!
+- 
+*** =pre_exercise_code
+```{r}
+pii <- read.csv("https://raw.githubusercontent.com/pm0kjp/datastore/master/pii.csv")
+```
+
+*** =sample_code
+```{r}
+# Whatever code you want to use to get the number of Y answers given to Q3
+numYes <- # Finish this line
+```
+
+*** =solution
+```{r}
+numYes <- length(which(pii$Question3 == "Y"))
+```
+
+*** =sct
+```{r}
+test_object("numYes")
+success_msg("Fantastic work! You counted the number of Y perfectly.")
 ```
