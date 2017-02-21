@@ -130,38 +130,6 @@ msg_bad <- "No, I don't think you've gotten it quite right!"
 msg_good <- "You've got it!  Congrats on making your first REDCap database!"
 test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_good, msg_bad, msg_bad))
 ```
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:45aefb0a9f
-## Edit a field
-
-The next few questions depend on your being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).
-
-Please watch the second video, "Detailed Overview", in the "Just Getting Started?" section.  You need to have your own REDCap database open so you can follow along with the Detailed Overview Video.
-
-Go into the Online Designer for your database, and click on the Demographics instrument in order to edit it.
-Then edit the question that has the text "Date subject signed consent".
-
-Which field shows up as a "Small reminder text" beneath the data entry box, reading YYYY-MM-DD?
-
-*** =instructions
-- Field Annotation
-- Validation
-- Field Label
-- Field Note
-*** =hint
-
-Try rewatching starting at 4:50 to see how to get into the Online Designer and edit a field.
-
-*** =pre_exercise_code
-```{r}
-# None
-```
-
-*** =sct
-```{r}
-msg_bad <- "No, not quite!"
-msg_good <- "You're right.  A Field Note helps prompt data entry personnel so that they input the right kind of data with the right format!"
-test_mc(correct = 4, feedback_msgs = c(msg_bad, msg_bad, msg_bad, msg_good))
-```
 
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:23033c3f56
 ## Using the Online Designer
