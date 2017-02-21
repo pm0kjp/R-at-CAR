@@ -1,6 +1,6 @@
 ---
-title       : Understanding CAR's Data Warehouse
-description : CAR's tabular data warehouse has lots of data available for your use
+title       : Intro to Tabular Data
+description : Tabular Data in R
 attachments :
 
 
@@ -32,119 +32,6 @@ msg_survey <- "You got it.  The fact that the structure is set -- 40 questions -
 msg_voice <- "Not really.  While we could extract some features to put into columns, like 'fundamental frequency', 'recording length', 'audio quality', the sound recording itself is so rich and varied that it wouldn't do well in a tabular format."
 msg_3d <- "No.  This is a bit of a trick question, because the problem is well-parameterized, with 3 variables, X, Y, and Z, and a fixed time of five minutes.  You could perhaps imagine a table with X,Y, and Z columns and a row for each frame, but at a recording speed of 60 (or more!) frames per second, each subject would have a very, very long table.  While you could force this to be in a tabular format, it's more likely to be set up as a stream of data."
 test_mc(correct = 2, feedback_msgs = c(msg_transcript, msg_survey, msg_voice,  msg_3d))
-```
-
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:0e8ff0b7d4
-## REDCap helps us with tabular data
-
-REDCap is a product of Vanderbilt University and it has features that make it ideal for storing tabular data related to research.
-
-Please read the following documents before proceeding:
-[REDCap home page](https://redcap.research.chop.edu/)
-
-REDCap does not offer which of the following?
-*** =instructions
-- a "Data Dictionary" template that allows you to do database design outside of REDCap
-- a browser-based "Online Designer"
-- an API that allows you to access REDCap from a programming environment
-- a "Migrate to Qualtrics" module that allows for seamless data transfer
-
-*** =hint
-Read the entire page, including the sidebar!
-
-*** =pre_exercise_code
-```{r}
-# No PEC
-```
-
-*** =sct
-```{r}
-# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
-msg_data_dic <- "No, REDCap does allow you to work with a data dictionary:  'Using REDCap's stream-lined process for rapidly developing projects, you may create and design projects using 1) the online method from your web browser using the Online Designer; and/or 2) the offline method by constructing a data dictionary template file in Microsoft Excel, which can be later uploaded into REDCap.'"
-msg_online_designer <- "No, REDCap does have a web-based 'Online Designer': 'Using REDCap's stream-lined process for rapidly developing projects, you may create and design projects using 1) the online method from your web browser using the Online Designer; and/or 2) the offline method by constructing a data dictionary template file in Microsoft Excel, which can be later uploaded into REDCap.'"
-msg_api <- "No. REDCap has an API that we use very frequently: 'REDCap API - Have external applications connect to REDCap remotely in a programmatic or automated fashion.'"
-msg_qualtrics <- "Yep, you got it!  Qualtrics is another survey engine that is not officially supported by CHOP.  Some studies need to use Qualtrics for some special functionality, but we have to be very careful not to store PHI there.  REDCap does not interface directly with Qualtrics."
-test_mc(correct = 4, feedback_msgs = c(msg_data_dic, msg_online_designer, msg_api, msg_qualtrics))
-```
-
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:bb4ff05dee
-## Starting With REDCap
-
-Log in to CHOP's REDCap instance at [https://redcap.research.chop.edu/](https://redcap.research.chop.edu/).  Use your CHOP username and password that you use for other CHOP things, like email.
-
-Which one of these is represented in the tabs across the top?
-*** =instructions
-- Download Center
-- Copy Existing Project
-- Training Resources
-- API 
-
-*** =hint
-
-*** =pre_exercise_code
-```{r}
-# None
-```
-
-*** =sct
-```{r}
-# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
-msg_bad <- "No, that's not a tab!"
-msg_good <- "You obviously logged in.  Training Resources is our next destination!"
-test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_good, msg_bad))
-```
-
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:651f79c23d
-## REDCap Getting Started Tutorials
-
-The next few questions depend on you being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).
-
-Please watch the first video, "Brief Overview", in the "Just Getting Started?" section.
-
-Which of the following kinds of data entry methods was NOT included in the video?
-*** =instructions
-- Signature Box, where a mobile user can sign his/her name or initials
-- Drop-Down menus with one possible answer per line
-- Checkboxes
-- Date picker (clickable calendar)
-- Radio buttons (clickable circles)
-*** =hint
-
-The video is just four minutes long, watch it again!
-
-*** =pre_exercise_code
-```{r}
-# None
-```
-
-*** =sct
-```{r}
-msg_bad <- "No, this is a supported data entry method shown in the video!"
-msg_good <- "You're right.  A signature box was not shown.  But that *is* a kind of data entry method you can add in REDCap!"
-test_mc(correct = 1, feedback_msgs = c(msg_good, msg_bad, msg_bad, msg_bad, msg_bad))
-```
---- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:a2b82c380f
-## Intro to CAR's Tabular Data Warehouse
-
-Give the following README a look. You'll have to scroll down to read it! [https://github.research.chop.edu/CenterForAutismResearch/Data-Warehouse-New-SQL-Structure](https://github.research.chop.edu/CenterForAutismResearch/Data-Warehouse-New-SQL-Structure)
-
-What describes the principle role of the code in this repository?
-*** =instructions
-- Downloading data from REDCap into a SQL server
-- Providing statistical analysis and data visualization tools
-- Creating a SQL data warehouse that pools and cleans REDCap data
-- Creating websites that provide for online data collection tools
-
-*** =hint
-Give the README a close read, and consider the title of the repository.
-
-*** =sct
-```{r}
-# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
-
-msg_bad <- "Oops, not quite!  Try again."
-msg_success <- "Exactly! The Data Warehouse New SQL Structure repository both sets up SQL table structure and populates tables to provide study-specific and multi-study data storage.  This is helpful when people want data across multiple studies."
-test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_success,  msg_bad))
 ```
 
 
