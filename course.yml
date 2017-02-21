@@ -1,7 +1,7 @@
 title            : R at CAR
 instructors      :
  - k.joy.payton@gmail.com
-description      : This is an automatically generated demo course which will help you on your way to create an awesome DataCamp course.
-university       : DataCamp
+description      : This course will help you understand how we use R at the Center for Autism Research at The Children's Hospital of Philadelphia.
+university       : Center for Autism Research
 difficulty_level : 2
-time_needed      : 1 hour
+time_needed      : 4 hours

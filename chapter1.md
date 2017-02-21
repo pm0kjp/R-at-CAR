@@ -1,5 +1,5 @@
 ---
-title       : Intro to Tabular Data
+title       : Quick Refresher on Tabular Data
 description : Tabular Data in R
 attachments :
 
@@ -133,8 +133,6 @@ success_msg("Good work! You created a data frame from a CSV!")
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:72cb3bbfc0
 ## Analyzing Tabular Data
-
-
 
 *** =instructions
 There are lots of ways to do this, but see if you can figure out how many "Y" values are given as the response to Question 3 in the pii data frame.  Assign that value to the variable numYes.
