@@ -133,7 +133,7 @@ test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_good, msg_bad, msg_bad))
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:45aefb0a9f
 ## Edit a field
 
-The next few questions depend on you being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).
+The next few questions depend on your being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).
 
 Please watch the second video, "Detailed Overview", in the "Just Getting Started?" section.  You need to have your own REDCap database open so you can follow along with the Detailed Overview Video.
 
@@ -166,9 +166,9 @@ test_mc(correct = 4, feedback_msgs = c(msg_bad, msg_bad, msg_bad, msg_good))
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:23033c3f56
 ## Using the Online Designer
 
-The next few questions depend on you being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).
+This question depends on your being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).  This question assumes you have watched the second video, "Detailed Overview", in the "Just Getting Started?" section.  
 
-Please watch the second video, "Detailed Overview", in the "Just Getting Started?" section.  You need to have your own REDCap database open so you can follow along with the Detailed Overview Video.
+You need to have your new REDCap database open.
 
 Using what you've learned, go into the Online Designer for your database, and click on the Demographics instrument in order to edit it.
 
@@ -201,9 +201,9 @@ test_mc(correct = 4, feedback_msgs = c(msg_bad, msg_bad, msg_bad, msg_good))
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3fc1f46a4a
 ## Data Entry
 
-The next few questions depend on you being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).
+This question depends on your being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).  This question assumes you have watched the second video, "Detailed Overview", in the "Just Getting Started?" section.  
 
-Please watch the second video, "Detailed Overview", in the "Just Getting Started?" section.  You need to have your own REDCap database open so you can follow along with the Detailed Overview Video.
+You need to have your new REDCap database open.
 
 Using what you've learned, add some new data for subject CAR-123.  The data you're going to enter is a completely blank Demographics form.  Don't add or change anything, and click "Save Record".
 
@@ -229,4 +229,36 @@ Try rewatching starting at 8:30 to see how to add data.  In the case of your dat
 msg_bad <- "No, not quite!"
 msg_good <- "You're right.  There are no errors, but we can imagine that we want errors to pop up.  We should make some of our fields 'required'."
 test_mc(correct = 4, feedback_msgs = c(msg_bad, msg_bad, msg_bad, msg_good))
+```
+
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:f7976d6617
+## Give yourself API access
+
+This question depends on your being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).  This question assumes you have watched the second video, "Detailed Overview", in the "Just Getting Started?" section.  
+
+You need to have your new REDCap database open.
+
+Go into User Rights and give yourself both kinds of API access: API Export and API Import/Update.  Then hit "Save Changes".
+Reload the page in your browser, and you should see a change in the "Applications" section of the page.  What two new applications are available to you?
+
+*** =instructions
+- API and API Sandbox
+- API Export and API Import / Update
+- API and API Playground
+- API Development and API Production
+
+*** =hint
+Watch the Detailed Overview video at around 11:00 to see how to access User Rights.  Click on your name to be able to edit your privileges.
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+msg_bad <- "No, that's not the pair I'm looking for."
+msg_good <- "You got it.  API lets you request, access, or reset your API token, while API Playground allows you to practice using the API and see how various languages encode the call to the API."
+test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_good, msg_bad))
 ```
