@@ -34,80 +34,46 @@ msg_3d <- "No.  This is a bit of a trick question, because the problem is well-p
 test_mc(correct = 2, feedback_msgs = c(msg_transcript, msg_survey, msg_voice,  msg_3d))
 ```
 
-
-
-
-
 --- type:NormalExercise lang:r xp:100 skills:1 key:1f948a1bd2
-## More movies
+## Creating Tabular Data in R
 
-In the previous exercise, you saw a dataset about movies. In this exercise, we'll have a look at yet another dataset about movies!
+In the previous question, you learned that a parent survey could be easily made into a tabular structure.  Here, let's create some tabular data for a parent questionnaire with five questions.  We'll call it the Particular Interests Inventory, or PII.
 
-A dataset with a selection of movies, `movie_selection`, is available in the workspace.
+In R, we'll use a data frame to create a six column data structure.  The first column will be titled "ID", and the other columns will be titled "Question1", "Question2",... "Question5".  
+
 
 *** =instructions
-- Check out the structure of `movie_selection`.
-- Select movies with a rating of 5 or higher. Assign the result to `good_movies`.
-- Use `plot()` to  plot `good_movies$Run` on the x-axis, `good_movies$Rating` on the y-axis and set `col` to `good_movies$Genre`.
+- Create a data frame with just one row, using this code: `pii <- data.frame("ID" = "CAR-123", "Question1" = "Y", "Question2" = "N", "Question3"= "Y", "Question4" = "Y", "Question5" = "N")`
 
 *** =hint
-- Use `str()` for the first instruction.
-- For the second instruction, you should use `...[movie_selection$Rating >= 5, ]`.
-- For the plot, use `plot(x = ..., y = ..., col = ...)`.
+- Make sure your quotes are correct -- do they have opening and closing quotes?
 
 *** =pre_exercise_code
 ```{r}
-# You can also prepare your dataset in a specific way in the pre exercise code
-
-library(MindOnStats)
-data(Movies)
-movie_selection <- Movies[Movies$Genre %in% c("action", "animated", "comedy"),c("Genre", "Rating", "Run")]
-
-# Clean up the environment
-rm(Movies)
+# None
 ```
 
 *** =sample_code
 ```{r}
-# movie_selection is available in your workspace
-
-# Check out the structure of movie_selection
-
-
-# Select movies that have a rating of 5 or higher: good_movies
-
-
-# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre
-
+# Create a data frame with one row
+pii <- data.frame("ID" = "CAR-123", "Question1" = "Y", "Question2" = "N", "Question3"= "Y", "Question4" = "Y", "Question5" = "N")
 ```
 
 *** =solution
 ```{r}
-# movie_selection is available in your workspace
-
-# Check out the structure of movie_selection
-str(movie_selection)
-
-# Select movies that have a rating of 5 or higher: good_movies
-good_movies <- movie_selection[movie_selection$Rating >= 5, ]
-
-# Plot Run (i.e. run time) on the x axis, Rating on the y axis, and set the color using Genre
-plot(good_movies$Run, good_movies$Rating, col = good_movies$Genre)
+# Create a data frame with one row, using data.frame.
+pii <- data.frame # Add your code here!
 ```
 
 *** =sct
 ```{r}
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
 
-test_function("str", args = "object",
-              not_called_msg = "You didn't call `str()`!",
-              incorrect_msg = "You didn't call `str(object = ...)` with the correct argument, `object`.")
+test_function("data.frame",
+              not_called_msg = "You didn't call `data.frame()`!",
+              incorrect_msg = "You didn't call `data.frame()` with the correct arguments.")
 
-test_object("good_movies")
-
-test_function("plot", args = "x")
-test_function("plot", args = "y")
-test_function("plot", args = "col")
+test_object("pii")
 
 test_error()
 
