@@ -60,9 +60,9 @@ Read the entire page, including the sidebar!
 *** =sct
 ```{r}
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
-msg_data_dic <- "No, REDCap does allow you to work with a data dictionary."
-msg_online_designer <- "No, REDCap does have a web-based Online Designer."
-msg_api <- "No. REDCap has an API that we use very frequently."
+msg_data_dic <- "No, REDCap does allow you to work with a data dictionary:  'Using REDCap's stream-lined process for rapidly developing projects, you may create and design projects using 1) the online method from your web browser using the Online Designer; and/or 2) the offline method by constructing a data dictionary template file in Microsoft Excel, which can be later uploaded into REDCap.'"
+msg_online_designer <- "No, REDCap does have a web-based 'Online Designer': 'Using REDCap's stream-lined process for rapidly developing projects, you may create and design projects using 1) the online method from your web browser using the Online Designer; and/or 2) the offline method by constructing a data dictionary template file in Microsoft Excel, which can be later uploaded into REDCap.'"
+msg_api <- "No. REDCap has an API that we use very frequently: 'REDCap API - Have external applications connect to REDCap remotely in a programmatic or automated fashion.'"
 msg_qualtrics <- "Yep, you got it!  Qualtrics is another survey engine that is not officially supported by CHOP.  Some studies need to use Qualtrics for some special functionality, but we have to be very careful not to store PHI there.  REDCap does not interface directly with Qualtrics."
 test_mc(correct = 4, feedback_msgs = c(msg_data_dic, msg_online_designer, msg_api, msg_qualtrics))
 ```
