@@ -67,6 +67,62 @@ msg_qualtrics <- "Yep, you got it!  Qualtrics is another survey engine that is n
 test_mc(correct = 4, feedback_msgs = c(msg_data_dic, msg_online_designer, msg_api, msg_qualtrics))
 ```
 
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:bb4ff05dee
+## Starting With REDCap
+
+Log in to CHOP's REDCap instance at [https://redcap.research.chop.edu/](https://redcap.research.chop.edu/).  Use your CHOP username and password that you use for other CHOP things, like email.
+
+Which one of these is represented in the tabs across the top?
+*** =instructions
+- Download Center
+- Copy Existing Project
+- Training Resources
+- API 
+
+*** =hint
+
+*** =pre_exercise_code
+```{r}
+# None
+```
+
+*** =sct
+```{r}
+# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
+msg_bad <- "No, that's not a tab!"
+msg_good <- "You obviously logged in.  Training Resources is our next destination!"
+test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_good, msg_bad))
+```
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:651f79c23d
+## REDCap Getting Started Tutorials
+
+The next few questions depend on you being logged in to REDCap and accessing the following page: [https://redcap.research.chop.edu/index.php?action=training](https://redcap.research.chop.edu/index.php?action=training).
+
+Please watch the first video, "Brief Overview", in the "Just Getting Started?" section.
+
+Which of the following kinds of data entry methods was NOT included in the video?
+*** =instructions
+- Signature Box, where a mobile user can sign his/her name or initials
+- Drop-Down menus with one possible answer per line
+- Checkboxes
+- Date picker (clickable calendar)
+- Radio buttons (clickable circles)
+*** =hint
+
+The video is just four minutes long, watch it again!
+
+*** =pre_exercise_code
+```{r}
+# None
+```
+
+*** =sct
+```{r}
+msg_bad <- "No, this is a supported data entry method shown in the video!"
+msg_good <- "You're right.  A signature box was not shown.  But that *is* a kind of data entry method you can add in REDCap!"
+test_mc(correct = 1, feedback_msgs = c(msg_good, msg_bad, msg_bad, msg_bad, msg_bad))
+```
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:a2b82c380f
 ## Intro to CAR's Tabular Data Warehouse
 
