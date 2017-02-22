@@ -94,3 +94,85 @@ msg_bad <- "Nope, that's not how the data starts."
 msg_good <- "Yes, you just made your first API call!  Congrats!"
 test_mc(correct = 1, feedback_msgs = c(msg_good, msg_bad, msg_bad, msg_bad))
 ```
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:7d7d01cba9
+## API tokens
+
+Important note: Normally it is a TERRIBLE idea to post or use your API key in the cloud (like here on DataCamp), where it might be copied and used without your consent.  But we can make an exception here because:
+
+- The API key is unique to the combination of user and project.  So this key is unique to your practice project, which will hold just practice data.  There's no way to get to real subject data with your key.  You didn't add real subject data, did you?
+- DataCamp is probably not evil and probably isn't interested in your REDCap data anyway
+- DataCamp runs over https, so we eliminate the man-in-the-middle risk
+- You're going to re-issue or discard your API key at the end of this course, so exposure is limited.
+
+The important thing to remember is that exposing your API key to a place where it could be seen or picked off (say, hotel wi-fi) is a Very Bad Idea, and we're taking a calculated very minimal risk here.
+
+Should you throw around your API keys and share them?
+
+*** =instructions
+- Absolutely, I believe in the sharing economy!  Freedom!
+- No way, API tokens are like the keys to my house, and I keep them close at all times.
+*** =hint
+Really?
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+msg_bad <- "You're killing me, Smalls."
+msg_good <- "Yes!  Make good choices!"
+test_mc(correct = 1, feedback_msgs = c(msg_bad, msg_good))
+```
+
+
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:0e20eaee75
+## Getting REDCap data into R
+
+We can access REDCap data using the API and bring it directly into R for analysis.  This is often more convenient than downloading a CSV, because you can specify specific data you want, including data that isn't easily downloadable in the REDCap website download area.  
+
+*** =instructions
+- Log into your practice REDCap database and go to the API Playground.  
+- Choose "Export Project Info", and in the next two menus, choose "CSV".   
+- Then look down in the bottom part of the page and look for a bunch of tabs with different programming languages.  
+- Click on the R tab, and paste that code into your code editor at the right.  
+- Then click "Submit".
+
+*** =hint
+If you don't have the API Playground, check to make sure you've given yourself API rights in the User Rights application, and that you've requested an API token in the API section of Applications
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sample_code
+```{r}
+# Your code should look something like this:
+#!/usr/bin/env Rscript
+# library(RCurl)
+# result <- postForm(
+#   uri='https://redcap.chop.edu/api/',
+#   token='SOME TEXT HERE',
+#   content='project',
+#   format='csv',
+#   returnFormat='csv'
+#)
+#print(result)
+
+
+```
+
+*** =solution
+```{r}
+# none, I'm not giving away my key!
+```
+
+*** =sct
+```{r}
+test_object("result", eval = FALSE)
+success_msg("You created the object 'result'!")
+```
