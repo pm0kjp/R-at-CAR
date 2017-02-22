@@ -124,7 +124,7 @@ Really?
 ```{r}
 msg_bad <- "You're killing me, Smalls."
 msg_good <- "Yes!  Make good choices!"
-test_mc(correct = 1, feedback_msgs = c(msg_bad, msg_good))
+test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_good))
 ```
 
 
@@ -168,11 +168,59 @@ If you don't have the API Playground, check to make sure you've given yourself A
 
 *** =solution
 ```{r}
-# none, I'm not giving away my key!
+result <- ""
 ```
 
 *** =sct
 ```{r}
 test_object("result", eval = FALSE)
-success_msg("You created the object 'result'!")
+success_msg("You created the object 'result'!  It's not very pretty, but we'll fix that in our next section.")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:cc490e7798
+## Formatting REDCap Data
+
+So, the "result" object you created is a raw CSV, but you want to make it into a data frame.  While you might think that `read.csv()` is a good option, you can't do `read.csv(result)`, because `read.csv()` expects a *file name*, not the actual text that constitutes a .csv.  What to do?  We'll make a text connection.
+
+We'll create a "text connection" and when we use that connection variable type, read.csv will realize that it's not going to use a file as its source csv, but a text stream. 
+
+*** =instructions
+- Copy the same R code that you did for the last question -- Export Project Info with Format and Errors both set to CSV.
+- Remove the line that reads print(result).
+- Replace it with these two lines: 
+- `con <- textConnection(result)`
+- `myDF <- read.csv(con)`
+- Add a final line to look just at the first few columns:
+- `myDF[,1:3]`
+- Submit your answer!
+*** =hint
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sample_code
+```{r}
+
+```
+
+*** =solution
+```{r}
+result <- ""
+con <- textConnection(result)
+myDF <- ""
+```
+
+*** =sct
+```{r}
+test_function("textConnection",
+              not_called_msg = "You didn't call `textConnection()`!")
+test_object("result", eval= FALSE)
+test_object("con", eval=FALSE)
+test_object("myDF", eval = FALSE)
+test_output_contains("myDF[,1:3]",
+                     times = 1,
+                     incorrect_msg = "Did you display just the first few columns by typing `myDF[,1:3]`?")
+success_msg("Fantastic.  You now know how to download a CSV from REDCap and create a data frame from it, all within R!")
 ```
