@@ -224,3 +224,33 @@ test_output_contains("myDF[,1:3]",
                      incorrect_msg = "Did you display just the first few columns by typing `myDF[,1:3]`?")
 success_msg("Fantastic.  You now know how to download a CSV from REDCap and create a data frame from it, all within R!")
 ```
+
+
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:b7bbab8dbb
+## Understanding Playground Rules
+
+The API playground lets you try out a bunch of different API calls in your browser, so you can fine-tune your requests before plunking that code into your program or script.  This time, go into the API playground, and in the first drop-down menu, choose "Export Records".  Do *NOT* make any other selections.  Then hit "Execute Request".  Look at the output that REDCap returns.  
+
+What do you see?
+
+
+*** =instructions
+- No output -- I didn't request anything specific, so REDCap gave me nothing.
+- Output for every instrument and every subject -- I didn't request anything specific, so REDCap gave me everything.
+- An error message -- I didn't complete a full request so REDCap didn't know what to do.
+*** =hint
+
+It will help if you add fake data to your database, if you haven't already!
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+msg_bad <- "Nope, take a closer look!  It's complicated sometimes to make sense of encoded data, but you can do it!"
+msg_good <- "Yep.  If you don't limit your request (say by subject ID or by specific form/instrument), REDCap will just give you everything!  You're at the end of this chapter, so take what you've learned and play around a bit in the API playground and in your own RStudio at your computer!"
+test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_good, msg_bad))
+```

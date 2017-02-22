@@ -227,6 +227,6 @@ Watch the Detailed Overview video at around 11:00 to see how to access User Righ
 *** =sct
 ```{r}
 msg_bad <- "No, that's not the pair I'm looking for."
-msg_good <- "You got it.  API lets you request, access, or reset your API token, while API Playground allows you to practice using the API and see how various languages encode the call to the API."
+msg_good <- "You got it.  API lets you request, access, or reset your API token, while API Playground allows you to practice using the API and see how various languages encode the call to the API.  We'll do more with REDCap in future chapters!  Feel free to play around with your practice database for now."
 test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_good, msg_bad))
 ```

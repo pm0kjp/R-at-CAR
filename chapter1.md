@@ -161,5 +161,5 @@ numYes <- length(which(pii$Question3 == "Y"))
 *** =sct
 ```{r}
 test_object("numYes")
-success_msg("Fantastic work! You counted the number of Y perfectly.")
+success_msg("Fantastic work! You counted the number of Y perfectly.  This is the end of this chapter.  You may want to play around a bit with the fake pii data on Joy's GitHub, just to remind yourself how to work with data frames.  If you need some basic R refreshers, check out DataCamp's free introduction to R!")
 ```
