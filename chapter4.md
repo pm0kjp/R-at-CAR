@@ -32,9 +32,9 @@ test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_success,  msg_bad))
 Take a look at the first hundred lines or so of [https://github.research.chop.edu/CenterForAutismResearch/Data-Warehouse-New-SQL-Structure/blob/master/raw_pooled_data.sql](the raw_pooled_data.sql) script.
 
 What do you think the purpose of the script is?
- (A) Removing tables that have a name like `some_instrument_name_raw`
- (B) Building tables that have a name like `some_instrument_name_raw` 
- (C) Populating tables that have a name like `some_instrument_name_raw`
+- (A) Removing tables that have a name like `some_instrument_name_raw`
+- (B) Building tables that have a name like `some_instrument_name_raw` 
+- (C) Populating tables that have a name like `some_instrument_name_raw`
 *** =instructions
 - (A) and (B) only
 - (A), (B), and (C)
@@ -66,10 +66,10 @@ Once we have a "landing spot" for raw pooled data (pooled here means including s
 
 Look at the first 70 lines of [https://github.research.chop.edu/CenterForAutismResearch/Data-Warehouse-New-SQL-Structure/blob/master/4880.sql](the 4880.sql script).  What do you think is happening here?
 
-(A) A table is destroyed
-(B) A table is built
-(C) Data is pulled into the table from a CSV
-(D) Data is copied from the table into a raw pooled table
+- (A) A table is destroyed
+- (B) A table is built
+- (C) Data is pulled into the table from a CSV
+- (D) Data is copied from the table into a raw pooled table
 
 *** =instructions
 - (A) and (B) only
@@ -91,7 +91,40 @@ A list of several important commands in SQL can be found at [https://www.w3schoo
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
 
 msg_bad <- "Nope, that's not it!"
-msg_success <- "Exactly! Each study-specific script first destroys an instrument table (an instrument = any tabular data from) if it currently exists and rebuilds it, but empty, with no data being added just yet.  Then we load data into that table from a .csv (which we've gotten from REDCap using the API in a previous step).  Finally, we copy the data contained in that study-specific table into the raw table corresponding to that instrument."
+msg_success <- "Exactly! Each study-specific script first destroys an instrument table (an instrument = any tabular data form) if it currently exists and rebuilds it, but empty, with no data being added just yet.  Then we load data into that table from a .csv (which we've gotten from REDCap using the API in a previous step).  Finally, we copy the data contained in that study-specific table into the raw table corresponding to that instrument."
 test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
+```
+
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:524289ea84
+## A review so far
+
+CAR's tabular data warehouse is complex!  This is our methodology:
+- (1) For each study, download CSV's from each instrument in the study (could be one, could be dozens!).  This takes place using the API, using code you haven't seen yet.
+- (2) For each kind of instrument (an instrument means a single kind of questionnaire, like ADHD-Home or the ADOS Module 3), create an empty table that reflects all the fields we expect to have for that questionnaire, regardless of the source of the data.
+- (3) For each study, create a SQL table for each downloaded CSV we did in step (1), load the CSV data into it, and also add that data to the integrated or pooled data table that holds data for that particular instrument across various studies.
+- (4) Once all the studies are loaded, and all the pooled raw data tables are populated, take the data in the pooled raw data tables and clean it to create a pooled cleaned table for each instrument.
+
+What kind of pooled data do we have?
+
+
+*** =instructions
+- Pooled raw data (unaltered -- or minimally altered -- data coming as it exists in REDCap databases)
+- Pooled cleaned data (data that comes from multiple sources but has undergone cleaning to make it more useful and/or trustworthy)
+- Both pooled raw and cleaned data
+*** =hint
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
+
+msg_bad <- "Nope, that's not it!"
+msg_success <- "Yep, you got it. It's important to clean the data well, doing things like removing meaningless / empty rows, scoring the data in ways not already done in the source database, improving variable names, and so on.  The easiest way for us to do this is to have one single 'dirty' (raw) database that we use as our source, then we apply various commands to clean that data and create a pooled cleaned dataset."
+test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_success))
 ```
 
