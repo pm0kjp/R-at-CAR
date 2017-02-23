@@ -161,5 +161,49 @@ numYes <- length(which(pii$Question3 == "Y"))
 *** =sct
 ```{r}
 test_object("numYes")
-success_msg("Fantastic work! You counted the number of Y perfectly.  This is the end of this chapter.  You may want to play around a bit with the fake pii data on Joy's GitHub, just to remind yourself how to work with data frames.  If you need some basic R refreshers, check out DataCamp's free introduction to R!")
+success_msg("Fantastic work! You counted the number of Y perfectly.  You may want to play around a bit with the fake pii data on Joy's GitHub, just to remind yourself how to work with data frames.  If you need some basic R refreshers, check out DataCamp's free introduction to R!")
+```
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:7fe9a05798
+## A Brief Overview of Research Tabular Data
+
+Most of our researchers collect a *lot* of tabular data.  Terms like "SRS", "ADOS", "Vineland", and "WASI" will become second nature to you.  We generate tabular data through things like:
+- Questionnaires given to research subjects or people who can describe subject behavior well (things like the Social Communication Questionnaire, or SCQ, or the ADHD questionnaire for teachers)
+- Asking subjects to perform a task and having a researcher record the results (things like the Purdue Pegboard task, or the Benton facial recognition task)
+- Conducting an interview that allows psychologists to record subject development or abilities (things like the Autism Diagostic Interview Revised, the ADI-R, or the Weschler Intelligence Scale for Children, 4th Edition, the WISC-4)
+- Asking demographic information like date of birth and medical history
+
+This research data has been collected in a "siloed" manner -- each study (and there are many) has its own data collection and storage methods, usually in a system called REDCap, which you'll learn about in the next chapter.  This is convenient for researchers, as they need to be able to both protect access to their data (only certain people, cleared by CHOP's Institutional Review Board, or IRB, should be able to view the data) and analyze it quickly, without having to filter out data that belongs to other studies or making a data pull request from a database manager.
+
+But this can cause problems, too, because there was historically no easy way to answer questions like
+- Across all of CAR's studies, how many black, white, and Asian participants are there?
+- For a grant, I need to know if we can identify 500 boys with autism between the ages of 6-15.  Do we have that many among our subjects?
+- I'd like to understand which questions in the ADOS are the most useful (do a factor analysis).  Please give me all the ADOS question data and scores for everyone for whom we have an ADOS.
+
+Needs like these are why CAR's data team was formed.  Our first task, which is ongoing, was to create a SQL data warehouse of all of our tabular data, from across the various studies.  
+
+After reading the above, which of the following is NOT true?
+
+*** =instructions
+- Tabular data at CAR includes things like intelligence tests administered by psychologists.
+- In REDCap, access is open at the department level -- all CAR researchers can see all REDCap projects created by other CAR researchers
+- Data integration of our tabular data takes place using a SQL data warehouse
+- We give questionnaires not only to subjects, but to others who can report or inform on the behavior of subjects
+
+*** =hint
+Re-read the paragraph that begins with "This research data has been collected in a "siloed" manner...".
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
+msg_iq <- "No.  IQ tests like the WISC-4 are included in our tabular data!"
+msg_redcap <- "Yep.  REDCap databases are controlled by whoever created it.  There's no automatic way for us to see into each other's projects without being added manually by the database owner or administrator.  Additionally, users who can access any REDCap database need to be listed in the IRB protocol for the study."
+msg_sql <- "Nope, we do in fact use SQL.  Currently we have a MySQL database, and we're hoping to migrate to Oracle soon!"
+msg_reporter <- "No. Informant or reporter questionnaires are very important -- we ask parents, teachers, and others to fill out questionnaires about our subjects."
+test_mc(correct = 2, feedback_msgs = c(msg_iq, msg_redcap, msg_sql,  msg_reporter))
 ```

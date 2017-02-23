@@ -25,3 +25,35 @@ msg_bad <- "Oops, not quite!  Try again."
 msg_success <- "Exactly! The Data Warehouse New SQL Structure repository both sets up SQL table structure and populates tables to provide study-specific and multi-study data storage.  This is helpful when people want data across multiple studies."
 test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_success,  msg_bad))
 ```
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:90066c2ce2
+## Understanding the Raw Pooled Data Script
+
+Take a look at the first hundred lines or so of [https://github.research.chop.edu/CenterForAutismResearch/Data-Warehouse-New-SQL-Structure/blob/master/raw_pooled_data.sql](the raw_pooled_data.sql) script.
+
+What do you think the purpose of the script is?
+ (A) Removing tables that have a name like `some_instrument_name_raw`
+ (B) Building tables that have a name like `some_instrument_name_raw` 
+ (C) Populating tables that have a name like `some_instrument_name_raw`
+*** =instructions
+- (A) and (B) only
+- (A), (B), and (C)
+- (B) and (C) only
+- (B) only
+
+*** =hint
+A list of several important commands in SQL can be found at [https://www.w3schools.com/sql/sql_quickref.asp](https://www.w3schools.com/sql/sql_quickref.asp). 
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+# SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
+
+msg_bad <- "Oops, not quite!  Try again."
+msg_success <- "Exactly! The purpose of the raw_pooled_data.sql script is to destroy the table if it currently exists and rebuild it, but empty, with no data being added just yet.  We get fresh data from REDCap every time we rebuild the data warehouse, so we remove old tables entirely and rebuild them from scratch."
+test_mc(correct = 1, feedback_msgs = c(msg_success, msg_bad, msg_bad, msg_bad))
+```
