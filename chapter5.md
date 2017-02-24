@@ -46,6 +46,7 @@ success_msg("Right on!  That's the first step.")
 ## Making a database connection
 
 After loading RMySQL, you'll be able to make a database connection using dbConnect(). You'll need to use a few parameters:
+
 - host: What is the URL of the server running MySQL?  In our case, we're going to use genome-mysql.cse.ucsc.edu
 - user: What's the user name?  In our case, "genome".
 - password: What's the password for that user?  In our case, there is none -- we can leave this blank!

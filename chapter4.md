@@ -29,9 +29,10 @@ test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_success,  msg_bad))
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:90066c2ce2
 ## Understanding the Raw Pooled Data Script
 
-Take a look at the first hundred lines or so of [https://github.research.chop.edu/CenterForAutismResearch/Data-Warehouse-New-SQL-Structure/blob/master/raw_pooled_data.sql](the raw_pooled_data.sql) script.
+Take a look at the first hundred lines or so of [the `raw_pooled_data.sql`](https://github.research.chop.edu/CenterForAutismResearch/Data-Warehouse-New-SQL-Structure/blob/master/raw_pooled_data.sql) script.
 
 What do you think the purpose of the script is?
+
 - (A) Removing tables that have a name like `some_instrument_name_raw`
 - (B) Building tables that have a name like `some_instrument_name_raw` 
 - (C) Populating tables that have a name like `some_instrument_name_raw`

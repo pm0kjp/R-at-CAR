@@ -134,6 +134,8 @@ success_msg("Good work! You created a data frame from a CSV!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:72cb3bbfc0
 ## Analyzing Tabular Data
 
+We've loaded pii with all the data from that .csv you saw in the last question.  You can access it in your console or R script on the right.
+
 *** =instructions
 There are lots of ways to do this, but see if you can figure out how many "Y" values are given as the response to Question 3 in the pii data frame.  Assign that value to the variable numYes.
 
@@ -141,7 +143,7 @@ There are lots of ways to do this, but see if you can figure out how many "Y" va
 - Try using `pii$Question3 == "Y"` as your condition.
 - `?which()` might help you!
 - `?length()` might help you!
-- 
+
 *** =pre_exercise_code
 ```{r}
 pii <- read.csv("https://raw.githubusercontent.com/pm0kjp/datastore/master/pii.csv")
@@ -168,6 +170,7 @@ success_msg("Fantastic work! You counted the number of Y perfectly.  You may wan
 ## A Brief Overview of Research Tabular Data
 
 Most of our researchers collect a *lot* of tabular data.  Terms like "SRS", "ADOS", "Vineland", and "WASI" will become second nature to you.  We generate tabular data through things like:
+
 - Questionnaires given to research subjects or people who can describe subject behavior well (things like the Social Communication Questionnaire, or SCQ, or the ADHD questionnaire for teachers)
 - Asking subjects to perform a task and having a researcher record the results (things like the Purdue Pegboard task, or the Benton facial recognition task)
 - Conducting an interview that allows psychologists to record subject development or abilities (things like the Autism Diagostic Interview Revised, the ADI-R, or the Weschler Intelligence Scale for Children, 4th Edition, the WISC-4)
@@ -176,6 +179,7 @@ Most of our researchers collect a *lot* of tabular data.  Terms like "SRS", "ADO
 This research data has been collected in a "siloed" manner -- each study (and there are many) has its own data collection and storage methods, usually in a system called REDCap, which you'll learn about in the next chapter.  This is convenient for researchers, as they need to be able to both protect access to their data (only certain people, cleared by CHOP's Institutional Review Board, or IRB, should be able to view the data) and analyze it quickly, without having to filter out data that belongs to other studies or making a data pull request from a database manager.
 
 But this can cause problems, too, because there was historically no easy way to answer questions like
+
 - Across all of CAR's studies, how many black, white, and Asian participants are there?
 - For a grant, I need to know if we can identify 500 boys with autism between the ages of 6-15.  Do we have that many among our subjects?
 - I'd like to understand which questions in the ADOS are the most useful (do a factor analysis).  Please give me all the ADOS question data and scores for everyone for whom we have an ADOS.
