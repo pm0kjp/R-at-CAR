@@ -1,7 +1,6 @@
 ---
 title       : Quick Refresher on Tabular Data
-description : Tabular Data in R
-attachments :
+description : Tabular Data -- What is it?  How do we work with it?
 
 
 --- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:852d4b84bb
@@ -14,7 +13,7 @@ Which of the following kinds of data are tabular?
 - Transcripts of conversations between children and psychologists
 - Parent responses to a survey that asks 40 questions about child behavior
 - Voice recordings
-- Three-dimensional (X,Y,Z coordinate) movement data over the course of five minutes
+- Genomic data 
 
 *** =hint
 Imagine trying to fit the data into a table with rows and columns.  Which one fits that kind of schema?
@@ -30,8 +29,8 @@ Imagine trying to fit the data into a table with rows and columns.  Which one fi
 msg_transcript <- "Not really.  Transcript data is hard to put into columns and rows.  Rather, it's a free-form sort of data that can be short or long, have different turn-taking, have pauses that need to be noted, overlapping speaking, and different vocabulary.  This kind of data might be better in a document store, not in tabular format!"
 msg_survey <- "You got it.  The fact that the structure is set -- 40 questions -- is a good hint that this could be imagined as a 40-column table.  The 3D movement data is sort of a trick question:  You could perhaps imagine a table with X,Y, and Z columns and a row for each frame, but at a recording speed of 60 (or more!) frames per second, each subject would have a very, very long table.  While you could force this to be in a tabular format, it's more likely to be set up as a stream of data."
 msg_voice <- "Not really.  While we could extract some features to put into columns, like 'fundamental frequency', 'recording length', 'audio quality', the sound recording itself is so rich and varied that it wouldn't do well in a tabular format."
-msg_3d <- "No.  This is a bit of a trick question, because the problem is well-parameterized, with 3 variables, X, Y, and Z, and a fixed time of five minutes.  You could perhaps imagine a table with X,Y, and Z columns and a row for each frame, but at a recording speed of 60 (or more!) frames per second, each subject would have a very, very long table.  While you could force this to be in a tabular format, it's more likely to be set up as a stream of data."
-test_mc(correct = 2, feedback_msgs = c(msg_transcript, msg_survey, msg_voice,  msg_3d))
+msg_genomic <- "No.  Genomic data is frequently a sequence of letters that is more of a data stream than a tabular data format."
+test_mc(correct = 2, feedback_msgs = c(msg_transcript, msg_survey, msg_voice,  msg_genomic))
 ```
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:1f948a1bd2
@@ -210,4 +209,41 @@ msg_redcap <- "Yep.  REDCap databases are controlled by whoever created it.  The
 msg_sql <- "Nope, we do in fact use SQL.  Currently we have a MySQL database, and we're hoping to migrate to Oracle soon!"
 msg_reporter <- "No. Informant or reporter questionnaires are very important -- we ask parents, teachers, and others to fill out questionnaires about our subjects."
 test_mc(correct = 2, feedback_msgs = c(msg_iq, msg_redcap, msg_sql,  msg_reporter))
+```
+
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:3b4180306f
+## A Tidy Approach
+
+We try to do "tidy" data collection, integration, and analysis as much as possible.  To understand this concept, check out a brief article I wrote about this on CAR's data blog: [http://data.centerforautismresearch.org/tidyverse](http://data.centerforautismresearch.org/tidyverse) and read (scan, mostly, but pay special attention to parts 2 and 3) of [Hadley's Classic](http://vita.had.co.nz/papers/tidy-data.pdf).
+
+What defines tidy data?
+
+- (A) Each row consitutes a single observation
+- (B) The number of columns is generally less than 25
+- (C) Units are the same in all columns of the same metric type (you can't have grams in one column and pounds in another)
+- (D) Each column gives a measurement of one thing only
+- (E) The number of cells (row / column combinations) is minimized as much as possible
+
+*** =instructions
+- (A), (D), and (E)
+- (A) through (D)
+- (A) and (D) only
+- (A) through (C)
+- (A) through (E)
+
+*** =hint
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+msg_1 <- "You're partially right, but only partially right!"
+msg_2_4 <- "No, there's no limit on columns in the 'tidyverse', and as long as you're consistent within each column, units between columns can vary as needed."
+msg_3 <- "That's exactly right.  Avoid the temptation to combine measures or observations!"
+msg_5 <- "On the contrary, tidy data often has many more cells than untidy data.  And that's not the only thing you missed!"
+test_mc(correct = 3, feedback_msgs = c(msg_1, msg_2_4, msg_3, msg_2_4, msg_5))
 ```

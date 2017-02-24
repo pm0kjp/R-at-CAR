@@ -193,3 +193,43 @@ success_msg("Good work! You were able to make a connection to a remote database 
 ```
 
 
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:1d7b5e9b29
+## Getting the contents of a table
+
+So far, you can connect to a data *server*, connect to a specific database on a server, and list tables.  In the UCSC example, there were many databases, each with multiple tables containing data relating to genomics.  However, in the case of CAR's Tabular Data Warehouse, we're really only talking about a single database, with many tables.  As a reminder, the tables in the CAR Tabular Data Warehouse include:
+
+- Study and instrument specific tables (e.g. `study_7275_adhd_home`, which contains the ADHD Home instrument for the study named 7275)
+- Pooled raw tables (e.g. `adhd_home_raw`, which contains unaltered ADHD Home data from multiple studies)
+- Pooled cleaned tables (e.g. `adhd_home_cleaned`, which contains improved, enriched, or validated ADHD home data from multiple studies).
+
+Most frequently, you'll want to get data from a single table into an R object.  Say, for example, you want to do analysis on all the ADHD Home instruments and compare them to ADHD School.  It's a good bet you'll want to load all the data in the table `adhd_home_cleaned` into one R object, maybe named adhdHome, and all the data from `adhd_school_cleaned` into a different R object, say, adhdSchool.  Then you could either compare the two -- which has more subjects?  Which has higher rates of reporting for certain symptoms? -- or combine the data (for the subjects that have *both* a home and a school record, create a table that contains both reports).
+
+Let's practice getting a table from SQL and importing its content into R.
+
+
+*** =instructions
+We've given you all the previous code that connects you to the database.  You need to create an R object titled 
+
+
+*** =hint
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sample_code
+```{r}
+
+```
+
+*** =solution
+```{r}
+
+```
+
+*** =sct
+```{r}
+
+```

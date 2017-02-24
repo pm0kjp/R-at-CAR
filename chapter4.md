@@ -130,3 +130,38 @@ msg_success <- "Yep, you got it. It's important to clean the data well, doing th
 test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_success))
 ```
 
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:9b35b23a6d
+## Cleaned data
+
+If you want to check out the [cleaned data SQL script](https://github.research.chop.edu/CenterForAutismResearch/Data-Warehouse-New-SQL-Structure/blob/master/cleaned_pooled_data.sql), please do!  It's very large and quite complicated (and might benefit from being broken down into several component scripts), and we won't analyze it here.  
+
+Suffice it to say we do a few things here:
+
+- Copy data from the raw tables, if the rows have data (an artifact of REDCap is that it turns never-completed measures into rows that have a few variables filled in -- like study ID and event name -- but no real data.  It's this we have to look for and remove!)
+- Re-score instruments, to double-check and possibly enhance their REDCap scoring.  As an example, the original SRS has the same questions that the SRS-II has, but has different norming and data imputation rules, which affect scoring.  In a case like this, we can both check the original scores from SRS administrations and add a column for what the corresponding SRS-II scores would be, even though that column didn't exist in the original data
+- We improve variable names at times, depending on how badly they were named
+- We simplify data to the extent possible.  For example, let's say we have three columns: sex, score-if-male, and score-if-female.  Given that we know the sex of all the subjects, we really only need sex and score.
+- We can provide imputation.  Let's take the SCQ as an example.  To score the SCQ according to its rules, you need for it to be completed -- no allowance is made for imputation, and a subject with an incomplete SCQ can't have an SCQ score.  But if a subject still crosses a diagnostic threshold while missing a question or two, it might be helpful to know what there score *would* be if we were able to impute zeros for the missing items.
+
+
+Why does cleaning data matter?
+*** =instructions
+- It allows for greater confidence when scientists analyze scores
+- It improves the readability of data
+- It removes data that doesn't contribute anything to research
+- It enriches data collected a long time ago with new scores
+- All of the above
+*** =hint
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+msg_bad <- "Try again!"
+msg_good <- "You got it, cleaning data does all of the above and more!"
+test_mc(correct = 5, feedback_msgs = c(msg_bad, msg_bad, msg_bad, msg_bad, msg_good)
+```
