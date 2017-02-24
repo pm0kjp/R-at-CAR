@@ -100,12 +100,13 @@ test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_success, msg_bad, msg_bad))
 ## A review so far
 
 CAR's tabular data warehouse is complex!  This is our methodology:
+
 - (1) For each study, download CSV's from each instrument in the study (could be one, could be dozens!).  This takes place using the API, using code you haven't seen yet.
 - (2) For each kind of instrument (an instrument means a single kind of questionnaire, like ADHD-Home or the ADOS Module 3), create an empty table that reflects all the fields we expect to have for that questionnaire, regardless of the source of the data.
 - (3) For each study, create a SQL table for each downloaded CSV we did in step (1), load the CSV data into it, and also add that data to the integrated or pooled data table that holds data for that particular instrument across various studies.
 - (4) Once all the studies are loaded, and all the pooled raw data tables are populated, take the data in the pooled raw data tables and clean it to create a pooled cleaned table for each instrument.
 
-What kind of pooled data do we have?
+What kind of pooled tables do we have?
 
 
 *** =instructions
@@ -124,7 +125,7 @@ What kind of pooled data do we have?
 # SCT written with testwhat: https://github.com/datacamp/testwhat/wiki
 
 msg_bad <- "Nope, that's not it!"
-msg_success <- "Yep, you got it. It's important to clean the data well, doing things like removing meaningless / empty rows, scoring the data in ways not already done in the source database, improving variable names, and so on.  The easiest way for us to do this is to have one single 'dirty' (raw) database that we use as our source, then we apply various commands to clean that data and create a pooled cleaned dataset."
+msg_success <- "Yep, you got it. It's important to clean the data well, doing things like removing meaningless / empty rows, scoring the data in ways not already done in the source database, improving variable names, and so on.  The easiest way for us to do this is to have one single 'dirty' (raw) pooled table that we use as our source, then we apply various commands to clean that data and create a pooled cleaned table."
 test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_success))
 ```
 
