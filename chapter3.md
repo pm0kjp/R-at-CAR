@@ -202,7 +202,18 @@ We'll create a "text connection" and when we use that connection variable type, 
 
 *** =sample_code
 ```{r}
-
+# Your code should look something like this:
+#!/usr/bin/env Rscript
+# library(RCurl)
+# result <- postForm(
+#   uri='https://redcap.chop.edu/api/',
+#   token='SOME TEXT HERE',
+#   content='project',
+#   format='csv',
+#   returnFormat='csv'
+#)
+con <- # Add code here
+myDF <- # Add code here
 ```
 
 *** =solution
@@ -219,9 +230,6 @@ test_function("textConnection",
 test_object("result", eval= FALSE)
 test_object("con", eval=FALSE)
 test_object("myDF", eval = FALSE)
-test_output_contains("myDF[,1:3]",
-                     times = 1,
-                     incorrect_msg = "Did you display just the first few columns by typing `myDF[,1:3]`?")
 success_msg("Fantastic.  You now know how to download a CSV from REDCap and create a data frame from it, all within R!")
 ```
 
