@@ -6,9 +6,9 @@ description : In this chapter, you'll learn how to access CAR's tabular data war
 --- type:NormalExercise lang:r xp:100 skills:1 key:14335d7bec
 ##  Accessing the Data Warehouse
 
-You won't be able to access the actual CAR Tabular Data Warehouse from this site, as it's firewalled off (also, hello!  PHI is on that server!).  You will probably be able to access a *public* MySQL database, however, and this can help you understand the process.  We'll access the [UC Santa Cruz Genome Browser](https://genome.ucsc.edu/index.html), and we'll be very careful not to drive excessive traffic to their servers!
+You won't be able to access the actual CAR Tabular Data Warehouse from this site, as it's firewalled off (also, hello!  PHI is on that server!).  You will be able to access a *public* MySQL database, however, and this can help you understand the process.  We'll access the [UC Santa Cruz Genome Browser](https://genome.ucsc.edu/index.html), and we'll be very careful not to drive excessive traffic to their servers!
 
-We'll be using a package called "RMySQL".  RMySQL allows you to create a database connection that persists over time and allows you to reach into a MySQL instance, at the server level or at the database level. It, in turn, relies on DBI, a package that can make connections with various flavors of SQL databases.
+We'll be using a package called "RMySQL".  RMySQL allows you to easily create a MySQL database connection that persists over time and allows you to reach into a MySQL instance, at the server level or at the database level. It, in turn, relies on DBI, a package that can make connections with various flavors of SQL databases.
 
 
 *** =instructions
@@ -209,10 +209,19 @@ Let's practice getting a table from SQL and importing its content into R.
 
 
 *** =instructions
-We've given you all the previous code that connects you to the database.  You need to create an R object titled 
+We've given you all the previous code that connects you to the database.  You need to create an R object titled mRNA that contains all the items (use SELECT *) from the table all_mrna.  Note that in table names (and other names -- column names, database names, etc.), capitalization matters!
+
+Once you populate the table mRNA, please do the following:
+
+- View the first few rows, using head()
+- Create a table that shows the values of the `strand` column (use `table()`)
+
 
 
 *** =hint
+- Don't forget to use dbGetQuery with two parameters -- the connection, and the quoted SQL query.
+- `?head()` might help you!
+- `?table()` might help you!
 
 *** =pre_exercise_code
 ```{r}
@@ -221,15 +230,59 @@ We've given you all the previous code that connects you to the database.  You ne
 
 *** =sample_code
 ```{r}
+# Make a MySQL connection
+library(RMySql)
+myConnection <- dbConnect(MySQL(), user="genome", 
+                                   host="genome-mysql.cse.ucsc.edu", 
+                                   db="caePb1")
 
+# Create a data frame from a SQL table                                 
+mRNA <- # Add code here!
+
+# Be polite!
+dbDisconnect(myConnection)
+
+# Now you have a data frame, and you've politely dropped the connection.
+
+# View the first few rows of your data frame, using head()
+
+# Create a table that shows the values of the strand column (use table())
+                                   
 ```
 
 *** =solution
 ```{r}
+# Make a MySQL connection
+library(RMySql)
+myConnection <- dbConnect(MySQL(), user="genome", 
+                          host="genome-mysql.cse.ucsc.edu", 
+                          db="caePb1")
 
+# Create a data frame from a SQL table                              
+mRNA <- dbGetQuery(myConnection, "SELECT * from all_mrna")
+
+  
+# Be polite!
+dbDisconnect(myConnection)
+
+# Now you have a data frame, and you've politely dropped the connection.
+
+# View the first few rows of your data frame, using head()
+head(mRNA)
+
+# Create a table that shows the values of the strand column (use table())
+table(mRNA$strand)
 ```
 
 *** =sct
 ```{r}
-
+test_function("head",
+              not_called_msg = "You didn't call `head()`!",
+              incorrect_msg = "You didn't call `head()` with the correct arguments.")
+test_function("table",
+              not_called_msg = "You didn't call `table()`!",
+              incorrect_msg = "You didn't call `table()` with the correct arguments.")
+test_object(myConnection)
+test_object(mRNA)
+success_msg("Right on!  That's the first step.")
 ```
