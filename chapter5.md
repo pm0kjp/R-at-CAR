@@ -231,7 +231,7 @@ Once you populate the table mRNA, please do the following:
 *** =sample_code
 ```{r}
 # Make a MySQL connection
-library(RMySql)
+library(RMySQL)
 myConnection <- dbConnect(MySQL(), user="genome", 
                                    host="genome-mysql.cse.ucsc.edu", 
                                    db="caePb1")
@@ -253,7 +253,7 @@ dbDisconnect(myConnection)
 *** =solution
 ```{r}
 # Make a MySQL connection
-library(RMySql)
+library(RMySQL)
 myConnection <- dbConnect(MySQL(), user="genome", 
                           host="genome-mysql.cse.ucsc.edu", 
                           db="caePb1")
