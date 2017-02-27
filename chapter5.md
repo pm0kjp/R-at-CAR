@@ -1,6 +1,6 @@
 ---
-title       : Accessing CAR's Tabular Data Warehouse with R
-description : In this chapter, you'll learn how to access CAR's tabular data warehouse using R.  We'll cover connecting to the data warehouse, retrieving data, and cleaning up after yourself!
+title       : Accessing a MySQL Database with R
+description : In this chapter, you'll learn how to access a MySQL database like CAR's tabular data warehouse using R.  We'll cover connecting to the data warehouse, retrieving data, and cleaning up after yourself!
 
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:14335d7bec
