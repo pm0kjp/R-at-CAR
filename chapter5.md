@@ -282,7 +282,7 @@ test_function("head",
 test_function("table",
               not_called_msg = "You didn't call `table()`!",
               incorrect_msg = "You didn't call `table()` with the correct arguments.")
-test_object(myConnection)
-test_object(mRNA)
+test_object("myConnection")
+test_object("mRNA")
 success_msg("Right on!  That's the first step.")
 ```
