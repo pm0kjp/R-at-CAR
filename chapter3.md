@@ -259,6 +259,35 @@ It will help if you add fake data to your database, if you haven't already!
 *** =sct
 ```{r}
 msg_bad <- "Nope, take a closer look!  It's complicated sometimes to make sense of encoded data, but you can do it!"
-msg_good <- "Yep.  If you don't limit your request (say by subject ID or by specific form/instrument), REDCap will just give you everything!  You're at the end of this chapter, so take what you've learned and play around a bit in the API playground and in your own RStudio at your computer!"
+msg_good <- "Yep.  If you don't limit your request (say by subject ID or by specific form/instrument), REDCap will just give you everything!"
 test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_good, msg_bad))
+```
+
+ 
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:0a7361dda1
+## Deleting your API key
+
+It's important to remember that your API token is a powerful key -- it is a combination of destination (it is uniquely tied to a particular REDCap database) and identity (it is uniquely tied to you and has the same access levels as you do).  That's why after completing this chapter, in which you used your API token in a pretty vulnerable way (on a public web server) that you re-issue your API key.  Better safe than sorry!
+
+Go into your REDCap database, click on "API" in the left pane, and then choose either "Delete" or "Regenerate" Token.  I suggest regenerating it, since you're now at the end of this chapter.  Go, take what you've learned and play around a bit in the API playground and in your own RStudio at your computer, with your new API token that you'll never ever share.
+
+Did you disable the API token you used in this chapter?
+
+*** =instructions
+- No, I'm bad at following instructions.
+- Yep, I like safety.
+*** =hint
+
+You can't really need a hint, can you?!?!
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+msg_bad <- "Seriously, just delete it.  Even paranoids have enemies."
+msg_good <- "Thanks for being careful and safe!"
+test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_good))
 ```
