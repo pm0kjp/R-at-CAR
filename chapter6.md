@@ -14,10 +14,8 @@ Ready to move on?
 *** =instructions
 - Yep, I have access!
 - Nope, still waiting!
-
 *** =hint
 No real hint.  Just ask Joy to add you!
-
 *** =pre_exercise_code
 ```{r}
 
