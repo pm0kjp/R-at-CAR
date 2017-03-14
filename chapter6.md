@@ -202,3 +202,48 @@ msg_bad <- "Scoring can be complicated. Try again!"
 msg_good <- "Yep, the SCQ has a summary score -- just a raw total that doesn't tell you much more than that."
 test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_good, msg_bad))
 ```
+
+
+
+--- type:MultipleChoiceExercise lang:r xp:100 skills:1 key:e280908668
+## Types of scoring
+
+In psychometric evaluations, there are many ways to provide scores, often used in tandem on the same measure.  These include methods like:
+
+- raw summary score (score is not compared to any other subjects)
+- Z-score (how many standard deviations away from the mean of the norm is this subject?)
+- Transformed or T-score (*not* the same as Student's T statistic or T-score in statistics!)
+- severity score or other specialized comparison score (the ADOS-2 has one)
+- cutoff or threshold scoring that classifies subjects into groups (DSM checklists are one example)
+- domain-specific scores (which calculate a score on only certain items in an instrument that measure the same thing)
+- total scores (which include all domains)
+- composite scores (combinations of scores from different domains, but not all items)
+- percentiles (estimates of how subjects compare to the population at large)
+- standardized scores (usually a method of re-shaping score data so that the mean is 100)
+- consistency scores (how did subjects respond to questions asked in different ways?)
+- imputation (how you handle missing scores -- the SRS is a good example of built-in imputation logic)
+
+Understanding scoring is a huge part of working with human subject data at CAR.  Consider, for example, the ADOS-2 Module 3 (check it out by downloading the image from the REDCap library we've been working with!)
+
+What kind of scoring do you see?
+
+*** =instructions
+- raw scores at the domain and total level, consistency scores, composite scores, and percentiles
+- percentiles at the domain and total level, cutoff/threshold scoring, and standardized scores
+- imputation logic, consistency scores, Z-scores, and percentile estimates
+- domain and total level scoring, cutoff/threshold scoring, and severity scores
+
+*** =hint
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+
+*** =sct
+```{r}
+msg_bad <- "Scoring can be complicated. Try again!"
+msg_good <- "You're right.  The ADOS-2 includes scores at the domain-level, composite, and total level, as well as giving a calculted severity score, which is a comparison score, and a cutoff or diagnostic category.  Additionally, there's imputation logic (clinicians can code for 'N/A' in the record booklet."
+test_mc(correct = 4, feedback_msgs = c(msg_bad, msg_bad, msg_bad, msg_good))
+```
