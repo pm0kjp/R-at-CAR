@@ -113,3 +113,29 @@ msg_bad <- "Nope, you can download data in this format."
 msg_good <- "You're right.  JSON download is not specifically mentioned in the export section.  That's because humans, who use the export functionality, seldom find JSON helpful.  But programs do, which is why JSON exporting is supported in the API!"
 test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_good, msg_bad, msg_bad, msg_bad))
 ```
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:01ab5ec64f
+## Create a Report!
+
+Now's your chance to create your own report.  Create a report that has important copyright and intellectual property fields (like publisher info) for all instruments that are part of the ADOS or ADI-R families.  Make sure your report is visible only to you, not to all users of the database.  
+
+Try doing things like changing the order of how fields appear, using "contains" logic, and adding your own touches to the report.  Were you successful?  There's no specific question for this one.
+*** =instructions
+- No, this report thing is way too tricky!
+- I got it!  I played around with the reporting feature and can create reports based on data features.
+
+*** =hint
+Stuck?  Try watching the video again!
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+msg_bad <- "Really, you should try to get this right before moving forward!"
+msg_good <- "Fantastic, let's keep going!"
+test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_good))
+
+```
