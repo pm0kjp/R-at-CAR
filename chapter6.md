@@ -173,6 +173,6 @@ You have incomplete information here, but you can use form instructions (do they
 ```{r}
 msg_bad <- "Sorry, take another look.  This is tricky!"
 msg_good <- "You got it!  Only the SRS and the SCQ are questionnaires for family members of subjects.  The rest are sophisticated diagnostic tools used by trained clinicians."
-test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_good. msg_bad))
+test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_good, msg_bad))
 
 ```
