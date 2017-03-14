@@ -174,5 +174,31 @@ You have incomplete information here, but you can use form instructions (do they
 msg_bad <- "Sorry, take another look.  This is tricky!"
 msg_good <- "You got it!  Only the SRS and the SCQ are questionnaires for family members of subjects.  The rest are sophisticated diagnostic tools used by trained clinicians."
 test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_good, msg_bad))
+```
 
+
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:788490d588
+## Spotlight on the SCQ
+
+Take look at the Lifetime SCQ .pdf, and locate the scoring located at the end.  You can tell that this scanned document had been "used", as there are light carbon marks that show a score.  How would you describe the scoring of the SCQ?  All of the below are real scoring methods used at CAR in our psychometric instruments.  Which one corresponds to the SCQ?
+
+*** =instructions
+- There's a lookup table that gives you a value for a given total, converting it to a standarized score.
+- The scoring gives you a percentile -- comparing this subject to a population.
+- It's a summary score -- you just add up the score for each question to get a value.
+- There is a binary "cutoff" or "threshold" that if met indicates one diagnostic outcome, and if not, a lack of that diagnosis.
+
+*** =hint
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+msg_bad <- "Scoring can be complicated. Try again!"
+msg_good <- "Yep, the SCQ has a summary score -- just a raw total that doesn't tell you much more than that."
+test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_good, msg_bad))
 ```
