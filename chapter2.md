@@ -42,7 +42,7 @@ Log in to CHOP's REDCap instance at [https://redcap.research.chop.edu/](https://
 
 *Note: If this is the first time you've logged in, you'll need to fill out your "Profile".  Make sure that the primary email address you add there is your CHOP email!  After finishing your profile, you may need to "return to previous page" and login again.*
 
-Which one of these is represented in the tabs across the top?
+Which one of these is represented in the tabs (now, buttons, in the new version) across the top?
 *** =instructions
 - Download Center
 - Copy Existing Project
