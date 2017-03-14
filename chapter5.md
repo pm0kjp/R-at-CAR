@@ -4,7 +4,7 @@ description : In this chapter, you'll learn how to access a MySQL database like 
 
 
 --- type:NormalExercise lang:r xp:100 skills:1 key:14335d7bec
-##  Accessing the Data Warehouse
+##  Using RMySQL
 
 You won't be able to access the actual CAR Tabular Data Warehouse from this site, as it's firewalled off (also, hello!  PHI is on that server!).  You will be able to access a *public* MySQL database, however, and this can help you understand the process.  We'll access the [UC Santa Cruz Genome Browser](https://genome.ucsc.edu/index.html), and we'll be very careful not to drive excessive traffic to their servers!
 
