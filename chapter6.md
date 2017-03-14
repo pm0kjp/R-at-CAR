@@ -137,5 +137,42 @@ Stuck?  Try watching the video again!
 msg_bad <- "Really, you should try to get this right before moving forward!"
 msg_good <- "Fantastic, let's keep going!"
 test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_good))
+```
+
+
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:598b05a5b0
+## Common Instruments
+
+There are a few common instruments that are commonly used to characterize subjects at CAR.  Check out the following instruments and look at the scanned .pdf of the instrument, including the scoring section, if included.
+
+- SCQ Lifetime
+- ADI-R (only scoring is uploaded at this point)
+- SRS (any variety will work, but SRS Parent is the most frequently used)
+- ADOS (again, any variety)
+- DAS (any variety, but DAS-II School is our most frequently used)
+- DSM Checklist (any variety)
+
+Which of the forms above seem to be adminstered by clinicians -- psychologists, in our case -- and filled out by them after an interview, test, observation, or interaction with the subject?
+
+*** =instructions
+- ADI-R, SRS, ADOS, and DAS
+- SRS, ADOS, and DSM Checklist
+- ADOS, ADI-R, DAS, and DSM Checklist
+- SCQ, SRS, and DAS
+
+*** =hint
+You have incomplete information here, but you can use form instructions (do they assume a high level of psychological know-how, or just a family connection with a subject?), form name (is the word "interview" or other tell-tale phrase in the title of the instrument or form), or contents (does it seem like this is an IQ test with many parts, or a quick questionnaire anyone able to read and write would be able to do pretty well?).
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+msg_bad <- "Sorry, take another look.  This is tricky!"
+msg_good <- "You got it!  Only the SRS and the SCQ are questionnaires for family members of subjects.  The rest are sophisticated diagnostic tools used by trained clinicians."
+test_mc(correct = 3, feedback_msgs = c(msg_bad, msg_bad, msg_good. msg_bad))
 
 ```
