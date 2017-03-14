@@ -84,3 +84,32 @@ msg_bad <- "Nope, that's not quite right!"
 msg_good <- "Yep, you got it!"
 test_mc(correct = 1, feedback_msgs = c(msg_good, msg_bad, msg_bad))
 ```
+
+
+
+--- type:MultipleChoiceExercise lang:r xp:50 skills:1 key:32fc67f1eb
+## Reports Video
+
+While still in the Reports screen, check out the video link at the top of the page.  Watch the brief intro into creating reports. 
+
+What kind of data export is *not* explicitly provided for?
+*** =instructions
+- Stata
+- JSON
+- CSV
+- SPSS
+- SAS
+*** =hint
+You can also hit the Export button on any report to get a list of the export options available!
+
+*** =pre_exercise_code
+```{r}
+
+```
+
+*** =sct
+```{r}
+msg_bad <- "Nope, you can download data in this format."
+msg_good <- "You're right.  JSON download is not specifically mentioned in the export section.  That's because humans, who use the export functionality, seldom find JSON helpful.  But programs do, which is why JSON exporting is supported in the API!"
+test_mc(correct = 2, feedback_msgs = c(msg_bad, msg_good, msg_bad, msg_bad, msg_bad))
+```
