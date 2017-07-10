@@ -152,3 +152,204 @@ test_function("summary",
               incorrect_msg = "You didn't call `summary()` with the correct arguments.")
 success_msg("Well done -- we have repeated measures in both fakeLang and fakeMath.")
 ```
+
+
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:900542393a
+## Using TRUE/FALSE vectors
+
+In the last exercise, we were able to get TRUE/FALSE values showing if the ID's in our data frames were the 2nd-nth use of that ID.  How can we actually see the affected ID's?  We'll use R's indexing feature to get a list of the actual ID's that repeat.
+
+Often, when we index in R, we do something like this:
+
+`fakeMath[10:25,1:2]` -- this shows rows 10-25 and column 1-2.
+`fakeLang$subjectID` -- this shows an entire column.
+`fakeLang[1:10,]` -- this shows all columns for the first ten rows.
+
+Try these methods in the console.
+
+We can also use TRUE/FALSE vectors.  So, if I have a vector "truthValues" of TRUE/FALSE that is the same number of rows as my data frame, I could show just the rows that are marked as "TRUE":
+
+`fakeLang[truthValues,]`
+
+Or, I could choose just one value, like subjectID:
+
+`fakeLang$subjectID[truthValues]` or `fakeLang[truthValues, subjectID]`
+
+*** =instructions
+
+Using the vectors you created in the last exercise, multipleLangScores and multipleMathScores, extract just the duplicated ID's.  Don't get the whole row, just the subjectIDs.  Finally, wrap your whole command in `unique()` so that we only see each repeated ID one time (otherwise, if an ID occurred 4 times, we'd see it 3 times -- the 2nd, 3rd, and 4th uses).  Do this for both fakeLang (using multipleLangScores) and fakeMath (using multipleMathScores).  Put the repeated ID's for fakeMath into mathRepeaters, and the repeated ID's for fakeLang into langRepeaters.  Then take a look at each list of repeating ID's.
+
+*** =hint
+You'll want to do something like this: `unique(fakeMath....)` and `unique(fakeLang....)`
+
+*** =pre_exercise_code
+```{r}
+fakeMath <- read.csv("https://raw.githubusercontent.com/pm0kjp/R-at-CAR/master/datasets/fakeMath.csv", stringsAsFactors = FALSE)
+fakeLang <- read.csv("https://raw.githubusercontent.com/pm0kjp/R-at-CAR/master/datasets/fakeLang.csv", stringsAsFactors = FALSE)
+fakeLang$testDate <- as.Date(fakeLang$testDate) 
+fakeMath$testDate <- as.Date(fakeMath$testDate) 
+multipleLangScores <- duplicated(fakeLang$subjectID)
+multipleMathScores <- duplicated(fakeMath$subjectID)
+```
+
+*** =sample_code
+```{r}
+langRepeaters <- unique() # Which ID's are repeated in fakeLang?
+mathRepeaters <- unique() # Which ID's are repeated in fakeMath?
+
+# Check out the repeated values:
+langRepeaters
+mathRepeaters
+```
+
+*** =solution
+```{r}
+langRepeaters <- unique(fakeLang$subjectID[multipleLangScores])
+mathRepeaters <- unique(fakeMath$subjectID[multipleMathScores])
+
+langRepeaters
+mathRepeaters
+```
+
+*** =sct
+```{r}
+test_error()
+test_object("langRepeaters")
+test_object("mathRepeaters")
+success_msg("Great!  Now we're really close to doing some date matching!")
+```
+
+
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:16e55c13ac
+## Checking out repeated data
+
+So far, we've identified which subjectID's are duplicated and we've identified which ones they are.  Why are we doing this?  Because at CAR, we often have repeated measures.  A subject who was in two different studies might have two SRS-2 Parent questionnaires given 2 years apart and 2 different SCQ's.  When we do data pulls for scientists, how do we pick which value is the "right" value to return?  Or do we match both SCQ values to both SRS-2?  That would give us four rows for a single subject, which we hardly ever want.  Generally, scientists want a single row of data for each subject.
+
+There are multiple ways to do "date matching."  The most common is that scientists will pick an "anchor" date, like the subject's ADOS administration date (or, in the case of multiple ADOS administrations, their most recent, or their earliest.  Then all other questionnaires will be selected by proximity to that anchor date.  Let's do the first step here, establishing our anchor date.  In our case, we'll say the date of the first Math test is the anchor date.  Let's get that!
+
+
+*** =instructions
+
+Load the dplyr library using `library(dplyr)`.
+
+Then, use dplyr to limit the fakeMath dataframe to just those rows that represent each subject's *first* Math score (in time).  The simplest way to do this is:
+
+* use group_by to create groups based on subjectID
+* use filter to restrict the rows to be the earliest of the dates
+* use slice to just take the first remaining row (only important if there's a date tie)
+* ungroup.
+* save the results in earliestMathScores.
+
+Find out the number of rows in earliestMathScores.  How many unique Math test takers do we have?  Store that number in numMath.
+
+*** =hint
+Do you need to be reminded of the structure of fakeMath?  Try `str(fakeMath)`.
+
+*** =pre_exercise_code
+```{r}
+fakeMath <- read.csv("https://raw.githubusercontent.com/pm0kjp/R-at-CAR/master/datasets/fakeMath.csv", stringsAsFactors = FALSE)
+fakeLang <- read.csv("https://raw.githubusercontent.com/pm0kjp/R-at-CAR/master/datasets/fakeLang.csv", stringsAsFactors = FALSE)
+fakeLang$testDate <- as.Date(fakeLang$testDate) 
+fakeMath$testDate <- as.Date(fakeMath$testDate) 
+```
+
+*** =sample_code
+```{r}
+library(dplyr)
+earliestMathScores <- fakeMath %>% 
+                      group_by(...) %>%  # What are you grouping by?
+                      filter( .... == min(...)) %>%  # What are you trying to find the min of?
+                      slice(1) %>%  # Just get the first remaining row
+                      ungroup()
+numMath <- # number of rows in earliestMathScores
+```
+
+*** =solution
+```{r}
+library(dplyr)
+earliestMathScores <- fakeMath %>% 
+  group_by(subjectID) %>% 
+  filter(testDate == min(testDate)) %>% 
+  slice(1) %>% 
+  ungroup()
+numMath <- nrow(earliestMathScores)
+```
+
+*** =sct
+```{r}
+test_error()
+test_object("earliestMathScores")
+test_object("numMath")
+success_msg("Great!  Now we're really close to doing some date matching!")
+```
+
+--- type:NormalExercise lang:r xp:100 skills:1 key:499f5b2f6b
+## Merging by Date
+
+As we've discussed previously, using dplyr will help a lot with date matching.  We have 411 unique subjects with Math scores (we narrowed them down by taking each subject's first administration).  The date of those math scores will be the "anchor" date for selecting a Language score to use in our merge.  It doesn't matter which happened first, language or math -- we just want the minimum difference (in other words, the absolute value of the testDate for math minus the testDate for language, or the other way around).
+
+
+*** =instructions
+
+First, merge earliestMathScores (what you created in the last question) and fakeLang.  Since the column names are the same in each data frame, `merge()` will apply suffixes, which you want to be crystal clear.  You'll use ".math" as the suffix for columns coming from earliestMathScores, and .lang for columns coming from fakeLang.  Also, keep rows where there are math scores but the subject doesn't have a language score.  Then, you'll use a similar dplyr technique to what you did last time:  
+
+* group_by the subjectID
+* filter by the smallest absolute value of the date difference 
+* slice(1) to keep the first row of any "ties"
+* ungroup
+
+Store the combined data in mathLangScores.
+
+*** =hint
+Merge can be complicated!  Try `?merge()` for more info.
+
+
+*** =pre_exercise_code
+```{r}
+fakeMath <- read.csv("https://raw.githubusercontent.com/pm0kjp/R-at-CAR/master/datasets/fakeMath.csv", stringsAsFactors = FALSE)
+fakeLang <- read.csv("https://raw.githubusercontent.com/pm0kjp/R-at-CAR/master/datasets/fakeLang.csv", stringsAsFactors = FALSE)
+fakeLang$testDate <- as.Date(fakeLang$testDate) 
+fakeMath$testDate <- as.Date(fakeMath$testDate) 
+library(dplyr)
+earliestMathScores <- fakeMath %>% 
+  group_by(subjectID) %>% 
+  filter(testDate == min(testDate)) %>% 
+  slice(1) %>% 
+  ungroup()
+```
+
+*** =sample_code
+```{r}
+unfilteredScores <- merge(x=earliestMathScores, y=fakeLang, by="...",  # What will you use to match?
+                          all...., # which of x and y do you want to preserve all rows for?
+                          suffixes = c('....','...'))   # what suffixes do you want?  Put in x, y order.
+                          
+mathLangScores <- unfilteredScores %>%
+                  group_by(...) %>% # What is your grouping variable?
+                  filter(abs(......) == min(abs(....))  %>%  # what are you trying to minimize?
+                  slice(1) %>%
+                  ungroup()
+                          
+```
+
+*** =solution
+```{r}
+unfilteredScores <- merge(x=earliestMathScores, y=fakeLang, by="subjectID",  # What will you use to match?
+                          all.x = TRUE, # which of x and y do you want to preserve all rows for?
+                          suffixes = c('.math', '.lang'))  # what suffixes do you want?  Put in x, y order.
+                                       
+mathLangScores <- unfilteredScores %>%
+                  group_by(subjectID) %>%
+                  filter(abs(testDate.math - testDate.lang) == min(abs(testDate.math - testDate.lang)))  %>% 
+                  slice(1) %>%
+                  ungroup()
+```
+
+*** =sct
+```{r}
+test_error()
+test_object("mathLangScores")
+success_msg("Perfect, you've done date matching!")
+```
