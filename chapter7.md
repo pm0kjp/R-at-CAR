@@ -183,16 +183,18 @@ So, I could do this to get entire rows (I'm selecting all columns here):
 
 `fakeLang[truthValues,]  # Note -- sample code -- won't actually work!`
 
-Or, I could choose just a single column to show, like subjectID:
+Or, I could choose just a single column to show, like subjectID (hint, this is what you'll be doing in this exercise!):
 
 `fakeLang$subjectID[truthValues]` or `fakeLang[truthValues, "subjectID"]`
 
 *** =instructions
 
-Using the vectors you created in the last exercise, multipleLangScores and multipleMathScores, extract just the duplicated ID's.  Don't get the whole row, just the subjectIDs.  Finally, wrap your whole command in `unique()` so that we only see each repeated ID one time (otherwise, if an ID occurred 4 times, we'd see it 3 times -- the 2nd, 3rd, and 4th uses).  Do this for both fakeLang (using multipleLangScores) and fakeMath (using multipleMathScores).  Put the repeated ID's for fakeMath into mathRepeaters, and the repeated ID's for fakeLang into langRepeaters.  Then take a look at each list of repeating ID's.
+Using the "is this a duplicated ID" truth vectors you created in the last exercise (`multipleLangScores` and `multipleMathScores`) extract just the duplicated ID's from fakeLang and fakeMath.
+
+Don't get the whole row, just the subjectIDs.  Finally, wrap your whole command in `unique()` so that we only see each repeated ID one time (otherwise, if an ID occurred 4 times, we'd see it 3 times -- the 2nd, 3rd, and 4th uses).  Do this for both `fakeLang` (using `multipleLangScores`) and `fakeMath` (using `multipleMathScores`).  Put the repeated ID's for `fakeMath` into `mathRepeaters`, and the repeated ID's for `fakeLang` into `langRepeaters`.  Then take a look at each list of repeating ID's.
 
 *** =hint
-You'll want to do something like this: `unique(fakeMath....)` and `unique(fakeLang....)`
+You'll want to do something like this: `unique(fakeMath....)` and `unique(fakeLang....)`  You'll want to use the vector multipleLangScores as a row index for fakeLang, and the vector multipleMathScores as a row index for fakeMath.  What column do you want?  The subjectID column only.
 
 *** =pre_exercise_code
 ```{r}
@@ -206,8 +208,8 @@ multipleMathScores <- duplicated(fakeMath$subjectID)
 
 *** =sample_code
 ```{r}
-langRepeaters <- unique() # Which ID's are repeated in fakeLang?
-mathRepeaters <- unique() # Which ID's are repeated in fakeMath?
+langRepeaters <- unique(fakeLang...) # Which ID's are repeated in fakeLang?
+mathRepeaters <- unique(fakeMath...) # Which ID's are repeated in fakeMath?
 
 # Check out the repeated values:
 langRepeaters
@@ -236,7 +238,7 @@ success_msg("Great!  Now we're really close to doing some date matching!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:16e55c13ac
 ## Checking out repeated data
 
-So far, we've identified which subjectID's are duplicated and we've identified which ones they are.  Why are we doing this?  Because at CAR, we often have repeated measures.  A subject who was in two different studies might have two SRS-2 Parent questionnaires given 2 years apart and 2 different SCQ's.  When we do data pulls for scientists, how do we pick which value is the "right" value to return?  Or do we match both SCQ values to both SRS-2?  That would give us four rows for a single subject, which we hardly ever want.  Generally, scientists want a single row of data for each subject.
+So far, we've identified which subjectID's are duplicated.  Why are we doing this?  Because at CAR, we often have repeated measures.  A subject who was in two different studies might have two SRS-2 Parent questionnaires given 2 years apart and 2 different SCQ's.  When we do data pulls for scientists, how do we pick which value is the "right" value to return?  Or do we match both SCQ values to both SRS-2?  That would give us four rows for a single subject, which we hardly ever want.  Generally, scientists want a single row of data for each subject.
 
 There are multiple ways to do "date matching."  The most common is that scientists will pick an "anchor" date, like the subject's ADOS administration date (or, in the case of multiple ADOS administrations, their most recent, or their earliest.  Then all other questionnaires will be selected by proximity to that anchor date.  Let's do the first step here, establishing our anchor date.  In our case, we'll say the date of the first Math test is the anchor date.  Let's get that!
 
@@ -247,16 +249,16 @@ Load the dplyr library using `library(dplyr)`.
 
 Then, use dplyr to limit the fakeMath dataframe to just those rows that represent each subject's *first* Math score (in time).  The simplest way to do this is:
 
-* use group_by to create groups based on subjectID
-* use filter to restrict the rows to be the earliest of the dates
-* use slice to just take the first remaining row (only important if there's a date tie)
-* ungroup.
+* use group_by to create groups, one for each subjectID (so that everything that happens next happens within each group)
+* use filter -- which picks rows --  to restrict the rows to be the earliest of the dates (this is happening within each group, so each subject is left with just rows that have the earliest administration date)
+* use slice to just take the first remaining row (only important if there's a date tie -- 2 or more rows match the earliest date for a certain subject)
+* ungroup (we've reduced each group, each subjectID, to just one row.  Let's put those rows altogether again without having groups!)
 * save the results in earliestMathScores.
 
 Find out the number of rows in earliestMathScores.  How many unique Math test takers do we have?  Store that number in numMath.
 
 *** =hint
-Do you need to be reminded of the structure of fakeMath?  Try `str(fakeMath)`.
+Do you need to be reminded of the structure of fakeMath?  Try `str(fakeMath)`.  Also, in dplyr, you don't have to put the data frame name, once you've indicated it at the start of the statement.  So, since we've defined fakeMath as our object that we're manipulating, we can just do group_by(subjectID) instead of group_by(fakeMath$subjectID).
 
 *** =pre_exercise_code
 ```{r}
@@ -301,10 +303,21 @@ success_msg("Great!  Now we're really close to doing some date matching!")
 
 As we've discussed previously, using dplyr will help a lot with date matching.  We have 411 unique subjects with Math scores (we narrowed them down by taking each subject's first administration).  The date of those math scores will be the "anchor" date for selecting a Language score to use in our merge.  It doesn't matter which happened first, language or math -- we just want the minimum difference (in other words, the absolute value of the testDate for math minus the testDate for language, or the other way around).
 
+In this exercise we're going to use `merge()`.  Merging combines two data frames so that the resulting object has all the columns of both data frames.  
+
+Merge will also allow you to keep 
+
+* only the rows where there's an entry in both data frames (in our case, we only keep subjects that have both math and language)
+* All the rows of one data frame, regardless of whether there's data for the same subject in the other (so, we keep all -- and only -- the subjects with math scores, and if they have language scores, those are included -- if not, we'll have NAs in those columns)
+* All the rows of both data frames (we keep subjects with math only, subjects with lang only, and subjects with both -- we'd have a lot of NA's if we did this)
+
+Try `?merge()` to get more info!
 
 *** =instructions
 
-First, merge earliestMathScores (what you created in the last question) and fakeLang.  Since the column names are the same in each data frame, `merge()` will apply suffixes, which you want to be crystal clear.  You'll use ".math" as the suffix for columns coming from earliestMathScores, and .lang for columns coming from fakeLang.  Also, keep rows where there are math scores but the subject doesn't have a language score.  Then, you'll use a similar dplyr technique to what you did last time:  
+First, merge `earliestMathScores` (what you created in the last question) and `fakeLang`.    Since the column names are the same in each data frame, `merge()` will apply suffixes, which you want to be crystal clear.  You'll use ".math" as the suffix for columns coming from earliestMathScores, and ".lang" for columns coming from fakeLang.  
+
+Also, keep rows where there are math scores but the subject doesn't have a language score.  Then, you'll use a dplyr technique similar to the last exercise:  
 
 * group_by the subjectID
 * filter by the smallest absolute value of the date difference 
@@ -314,7 +327,7 @@ First, merge earliestMathScores (what you created in the last question) and fake
 Store the combined data in mathLangScores.
 
 *** =hint
-Merge can be complicated!  Try `?merge()` for more info.
+Merge can be complicated!  Try `?merge()` for more info and pay attention to the `all.x`, `all.y`, and `all` options.  Don't forget that your suffixes need to be in a vector, like this: `c(".math", ".lang")`.  
 
 
 *** =pre_exercise_code
@@ -333,13 +346,13 @@ earliestMathScores <- fakeMath %>%
 
 *** =sample_code
 ```{r}
-unfilteredScores <- merge(x=earliestMathScores, y=fakeLang, by="...",  # What will you use to match?
-                          all...., # which of x and y do you want to preserve all rows for?
+unfilteredScores <- merge(x=earliestMathScores, y=fakeLang, by="...",  # What column will you use to match?
+                          all.... = TRUE, # which of x and y do you want to preserve all rows for?
                           suffixes = c('....','...'))   # what suffixes do you want?  Put in x, y order.
                           
 mathLangScores <- unfilteredScores %>%
                   group_by(...) %>% # What is your grouping variable?
-                  filter(abs(......) == min(abs(....))  %>%  # what are you trying to minimize?
+                  filter(abs(......) == min(abs(....)))  %>%  # what are you trying to minimize?
                   slice(1) %>%
                   ungroup()
                           
