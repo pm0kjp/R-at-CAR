@@ -8,7 +8,7 @@ Let's take the example of "date matching."  Let's get two datasets, one that has
 
 
 *** =instructions
-Create two dataframes, fakeMath and fakeLang, which contain simulated data.  Use read.csv() to get the data from https://raw.githubusercontent.com/pm0kjp/R-at-CAR/master/datasets/fakeMath.csv and https://raw.githubusercontent.com/pm0kjp/R-at-CAR/master/datasets/fakeLang.csv.  It's almost always a good idea to use stringsAsFactors = FALSE when using read.csv()!
+Create two dataframes, fakeMath and fakeLang, which contain simulated data.  Use `read.csv()` to get the data from https://raw.githubusercontent.com/pm0kjp/R-at-CAR/master/datasets/fakeMath.csv and https://raw.githubusercontent.com/pm0kjp/R-at-CAR/master/datasets/fakeLang.csv.  It's almost always a good idea to use `stringsAsFactors = FALSE` when using `read.csv()`!
 
 *** =hint
 Try fakeMath <- read.csv(".....", stringsAsFactors = FALSE) and fakeLang <- read.csv(".....", stringsAsFactors = FALSE)
@@ -44,10 +44,13 @@ success_msg("Good work! You pulled in the two objects!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:3b771fcd2a
 ## Correct data type problems
 
-Now that you've got fakeMath and fakeLang, take a look at the data and correct any type problems.  There are several ways to check out data types.  We'll use str(), which will show you the structure of your data frames.  We can also use head() and tail() to look at the data frames.  In the console, use str(fakeMath) to check out the structure of fakeMath.  You'll see that the second variable is a chr, or character variable, but it would be better to have its data type be date.  That way we could do things like date arithmetic!  You can use as.Date() to transform dates that are in character format and make them dates.
+Now that you've got fakeMath and fakeLang, take a look at the data and correct any type problems.  There are several ways to check out data types.  We'll use `str()`, which will show you the structure of your data frames.  We can also use `head()` and `tail()` to look at the data frames.  
+
+In the *console*, use `str(fakeMath)` to check out the structure of fakeMath.  You'll see that the second variable is a chr, or character variable, but it would be better to have its data type be date.  That way we could do things like date arithmetic!  You can use `as.Date()` to transform dates that are in character format and make them dates.
 
 *** =instructions
-Use str() to look at fakeMath and fakeLang, then use as.Date to make any date fields that are in character format true date-formatted variable types.
+Use `str()` to look at fakeMath and fakeLang, then use `as.Date()` to make any date fields that are in character format true date-formatted variable types.
+
 *** =hint
 You can use `?str()` in the console for more information on how to use it, and likewise you can use `?as.Date` (note the capitalization!) to get more info about that command as well.
 
@@ -113,10 +116,12 @@ Let's take a look at your fakeMath and fakeLang data frames, now with the date d
 
 *** =instructions
 
-Use duplicated() to see if any subjectID values are repeated.  Put the duplicated ID's for fakeMath into an object called multipleMathScores, and similarly, create multipleLangScores with the duplicated subject ID's in fakeLang.  Then take a look at each object you created, using summary().  You'll see that there are TRUE and FALSE values, indicating, for each subjectID, whether it is a 2nd (or 3rd, or 4th...) occurrence of an ID. 
+Use `duplicated()` to see if any subjectID values are repeated.  Put the duplicated ID's for `fakeMath` into an object called `multipleMathScores`, and similarly, create `multipleLangScores` with the duplicated subject ID's in `fakeLang`.  
+
+Then take a look at each object you created, using `summary()`.  You'll see that there are TRUE and FALSE values, indicating, for each subjectID, whether it is a 2nd (or 3rd, or 4th...) occurrence of an ID. 
 
 *** =hint
-You'll want to make sure to run duplicated() *just* on the subjectID field, not the entire dataframe.  Don't forget to use ? plus the command you want to learn more about, when you need a bit of extra help.
+You'll want to make sure to run `duplicated()` *just* on the subjectID field, not the entire dataframe.  Don't forget to use `?` plus the command you want to learn more about, when you need a bit of extra help.
 
 *** =pre_exercise_code
 ```{r}
@@ -160,7 +165,9 @@ success_msg("Well done -- we have repeated measures in both fakeLang and fakeMat
 
 In the last exercise, we were able to get TRUE/FALSE values showing if the ID's in our data frames were the 2nd-nth use of that ID.  How can we actually see the affected ID's?  We'll use R's indexing feature to get a list of the actual ID's that repeat.
 
-Often, when we index in R, we do something like this:
+### Quick indexing review
+
+Often, when we index (get specific data from inside a larger object) in R, we do something like this:
 
 `fakeMath[10:25,1:2]` -- this shows rows 10-25 and column 1-2.
 `fakeLang$subjectID` -- this shows an entire column.
@@ -168,13 +175,17 @@ Often, when we index in R, we do something like this:
 
 Try these methods in the console.
 
-We can also use TRUE/FALSE vectors.  So, if I have a vector "truthValues" of TRUE/FALSE that is the same number of rows as my data frame, I could show just the rows that are marked as "TRUE":
+### Indexing using truth values
 
-`fakeLang[truthValues,]`
+We can also use TRUE/FALSE vectors.  So, if I have a vector "truthValues" of TRUE/FALSE that is the same number of rows as my data frame, I could show just the rows that are marked as "TRUE".  So, if my logical vector is something like c(TRUE, TRUE, FALSE, FALSE, TRUE), I could use that vector to indicate that I want the first, second, and fifth values from something (data frame, for example) that has a length of five.
 
-Or, I could choose just one value, like subjectID:
+So, I could do this to get entire rows (I'm selecting all columns here):
 
-`fakeLang$subjectID[truthValues]` or `fakeLang[truthValues, subjectID]`
+`fakeLang[truthValues,]  # Note -- sample code -- won't actually work!`
+
+Or, I could choose just a single column to show, like subjectID:
+
+`fakeLang$subjectID[truthValues]` or `fakeLang[truthValues, "subjectID"]`
 
 *** =instructions
 
