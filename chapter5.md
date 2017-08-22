@@ -49,7 +49,7 @@ success_msg("Right on!  That's the first step.")
 
 After loading RMySQL, you'll be able to make a database connection using dbConnect(). You'll need to use a few parameters:
 
-- host: What is the URL of the server running MySQL?  In our case, we're going to use car-simulation-station.c9az8e0qjbgo.us-east-1.rds.amazonaws.com
+- host: What is the URL of the server running MySQL?  In our case, we're going to use car-simulation-station.c9az8e0qjbgo.us-east-1.rds.amazonaws.com.
 - user: What's the user name?  In our case, "datacamp_user".
 - password: What's the password for that user?  In our case, its "learn tabular data for fun and profit"  (yep, spaces and all!).  
 - db:  What specific database do you want to connect to?  If you don't know, you can leave this blank (we will, for now!)
@@ -76,6 +76,7 @@ library(RMySQL)
 *** =sample_code
 ```{r}
 myConnection <- dbConnect(MySQL(), user="???????", 
+                                   password="??????",
                                    host="???????")
                                 
 # List available databases.  
@@ -88,9 +89,9 @@ dbDisconnect(myConnection)
 
 *** =solution
 ```{r}
-myConnection <- dbConnect(MySQL(), user="genome", 
-                                   host="genome-mysql.cse.ucsc.edu",
-                                   password="learn tabular data for fun and profit")
+myConnection <- dbConnect(MySQL(), user="datacamp_user", 
+                                   password="learn tabular data for fun and profit",
+                                   host="car-simulation-station.c9az8e0qjbgo.us-east-1.rds.amazonaws.com")
                                 
 # List available databases.  
 # The part in quotes is a SQL query -- you could also issue this query directly into SQL -- it's independent from R.  R is just passing that query to the SQL server.
@@ -114,7 +115,7 @@ test_function("dbDisconnect",
               not_called_msg = "You didn't call `dbDisconnect()`!",
               incorrect_msg = "You didn't call `dbDisconnect()` with the correct arguments.")
 
-
+test_object("myConnection")
 success_msg("Good work! You were able to make a connection to a remote data server and see what databases are available to you.  Now scroll around on the right to see the various databases listed in your console.")
 ```
 
