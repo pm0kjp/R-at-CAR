@@ -1,5 +1,5 @@
 ---
-title       : Quick Refresher on Tabular Data
+title       : Quick Refresher on R and Tabular Data
 description : Tabular Data -- What is it?  How do we work with it?
 
 
