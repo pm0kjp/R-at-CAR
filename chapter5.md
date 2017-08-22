@@ -6,7 +6,9 @@ description : In this chapter, you'll learn how to access a MySQL database like 
 --- type:NormalExercise lang:r xp:100 skills:1 key:14335d7bec
 ##  Using RMySQL
 
-You won't be able to access the actual CAR Tabular Data Warehouse from this site, as it's firewalled off (also, hello!  PHI is on that server!).  You will be able to access a *public* MySQL database, however, and this can help you understand the process.  We'll access the [UC Santa Cruz Genome Browser](https://genome.ucsc.edu/index.html), and we'll be very careful not to drive excessive traffic to their servers!
+You won't be able to access the actual CAR Tabular Data Warehouse from this site, as it's firewalled off (also, hello!  PHI is on that server!).  You will be able to access a *public* MySQL database, however, and this can help you understand the process.  We'll access some simulated data that's similar to what you would see in the CAR Tabular Data Warehouse.
+
+A quick note about this database: it contains *completely fabricated* data.  It is meant to look realistic, so we have some subjects with more symptoms and others meant to look like typically developing controls, but it does *not* come from actual subjects.  It is 100% simulated.
 
 We'll be using a package called "RMySQL".  RMySQL allows you to easily create a MySQL database connection that persists over time and allows you to reach into a MySQL instance, at the server level or at the database level. It, in turn, relies on DBI, a package that can make connections with various flavors of SQL databases.
 
@@ -47,12 +49,12 @@ success_msg("Right on!  That's the first step.")
 
 After loading RMySQL, you'll be able to make a database connection using dbConnect(). You'll need to use a few parameters:
 
-- host: What is the URL of the server running MySQL?  In our case, we're going to use genome-mysql.cse.ucsc.edu
-- user: What's the user name?  In our case, "genome".
-- password: What's the password for that user?  In our case, there is none -- we can leave this blank!
-- db:  What specific database do you want to connect to?  If you don't know, you can leave this blank.
+- host: What is the URL of the server running MySQL?  In our case, we're going to use car-simulation-station.c9az8e0qjbgo.us-east-1.rds.amazonaws.com
+- user: What's the user name?  In our case, "datacamp_user".
+- password: What's the password for that user?  In our case, its "learn tabular data for fun and profit"  (yep, spaces and all!).  
+- db:  What specific database do you want to connect to?  If you don't know, you can leave this blank (we will, for now!)
 
-After connecting, you have an open connection object.  It's polite to drop that connection when it's not being used.  Since we're relying on the kindness of strangers, we'll definitely be polite!
+After connecting, you have an open connection object.  It's polite to drop that connection when it's not being used.  We'll definitely be polite and clean up after ourselves.
 
 To disconnect we use dbDisconnect().
 
@@ -87,7 +89,8 @@ dbDisconnect(myConnection)
 *** =solution
 ```{r}
 myConnection <- dbConnect(MySQL(), user="genome", 
-                                   host="genome-mysql.cse.ucsc.edu")
+                                   host="genome-mysql.cse.ucsc.edu",
+                                   password="learn tabular data for fun and profit")
                                 
 # List available databases.  
 # The part in quotes is a SQL query -- you could also issue this query directly into SQL -- it's independent from R.  R is just passing that query to the SQL server.
@@ -99,7 +102,7 @@ dbDisconnect(myConnection)
 
 *** =sct
 ```{r}
-test_function("dbConnect", args = c("user", "host"),
+test_function("dbConnect", args = c("user", "host", "password"),
               not_called_msg = "You didn't call `dbConnect()`!",
               incorrect_msg = "You didn't call `dbConnect()` with the correct arguments.")
 
