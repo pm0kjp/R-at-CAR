@@ -12,6 +12,8 @@ A quick note about this database: it contains *completely fabricated* data.  It 
 
 We'll be using a package called "RMySQL".  RMySQL allows you to easily create a MySQL database connection that persists over time and allows you to reach into a MySQL instance, at the server level or at the database level. It, in turn, relies on DBI, a package that can make connections with various flavors of SQL databases.
 
+If you're brand new to SQL, consider using the very cool [Khan academy website](https://www.khanacademy.org/computing/computer-programming/sql) to learn more (you can probably just do the first unit, the "Basics", for now).
+
 
 *** =instructions
 Load RMySQL into your R session using the `library()` command.
