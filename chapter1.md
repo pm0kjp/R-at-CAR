@@ -38,7 +38,7 @@ test_mc(correct = 2, feedback_msgs = c(msg_transcript, msg_survey, msg_voice,  m
 
 In the previous question, you learned that a parent survey could be easily made into a tabular structure.  Here, let's create some tabular data for a parent questionnaire with five questions.  We'll call it the Particular Interests Inventory, or PII.
 
-In R, we'll use a data frame to create a six column data structure.  The first column will be titled "ID", and the other columns will be titled "Question1", "Question2",... "Question5".  This should be review for you.  If not, you may want to consider the [DataCamp Introduction to R Course](https://www.datacamp.com/courses/free-introduction-to-r).
+In R, we'll use a data frame to create a six column data structure.  The first column will be titled "ID", and the other columns will be titled "Question1", "Question2",... "Question5".  This should be review for you.  If not -- if you're brand new to R or it's been awhile --  you may want to consider the [DataCamp Introduction to R Course](https://www.datacamp.com/courses/free-introduction-to-r).  It's real
 
 
 *** =instructions
@@ -56,7 +56,7 @@ In R, we'll use a data frame to create a six column data structure.  The first c
 *** =sample_code
 ```{r}
 # Create a data frame with one row
-pii <-  # Add your code here!
+pii <- data.frame( # Add your code here! )
 ```
 
 *** =solution
@@ -84,7 +84,7 @@ success_msg("Good work! You created a data frame!")
 --- type:NormalExercise lang:r xp:100 skills:1 key:ab1e3a396a
 ## Creating a Data Frame from a CSV
 
-In the previous question, you created a data frame that held answers from a parent survey.  Here, let's create a data frame from a csv using read.csv()  This should be review for you.  If not, you may want to consider the [DataCamp Introduction to R Course](https://www.datacamp.com/courses/free-introduction-to-r).
+In the previous question, you created a data frame that held answers from a parent survey.  Here, let's create a data frame from a csv using `read.csv()`.  This should be review for you.  If not -- if you're brand new to R or it's been awhile --  you may want to consider the [DataCamp Introduction to R Course](https://www.datacamp.com/courses/free-introduction-to-r).  It's really good and you'll learn a lot that will help you in this course!
 
 We're going to use data found at
 https://raw.githubusercontent.com/pm0kjp/datastore/master/pii.csv
