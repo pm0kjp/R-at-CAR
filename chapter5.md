@@ -124,7 +124,7 @@ success_msg("Good work! You were able to make a connection to a remote data serv
 --- type:NormalExercise lang:r xp:100 skills:1 key:259c740531
 ## Connecting to a specific database
 
-We saw a number of databases at UCSC that we can connect to.  Let's choose caePb1, which I chose at random.  
+We saw a two databases that we can connect to.  Let's choose car\_simulation\_station, which, conveniently, is also the only database you have rights to look at.  You don't really want to look at information\_schema, which has control information you shouldn't mess with.
 
 After connecting to a specific database, we can do things like look at the various tables within the database, get data from specific tables, and more.  There are a couple of ways to think about using R and SQL together:
 
@@ -137,14 +137,15 @@ Let's get some information about the tables in the caePb1 database.
 
 
 *** =instructions
-Using dbConnect, connect to the database caePb1.  Call your connection myConnection.  As a reminder, the host is genome-mysql.cse.ucsc.edu, the user is genome.  
+Using dbConnect, connect to the database car\_simulation\_station.  Call your connection myConnection.  As a reminder, the host is car-simulation-station.c9az8e0qjbgo.us-east-1.rds.amazonaws.com, the user is datacamp_user, and the password is "learn tabular data for fun and profit".  
 
-Then use dbGetQuery to issue the SQL query "SHOW TABLES;".  Capitalization is not that important in SQL keywords, but the tradition is to capitalize them.  Capitalization does matter, however, in things like table names or database names!  dbGetQuery has two parameters: the connection variable (in your case myConnection) and the quoted query.
+Then use dbGetQuery to issue the SQL query `"SHOW TABLES;"`.  Capitalization is not that important in SQL keywords, but the tradition is to capitalize them.  Capitalization does matter, however, in things like table names or database names!  dbGetQuery has two parameters: the connection variable (in your case myConnection) and the quoted query.
 
 *** =hint
-- Try dbConnect(MySQL(), user="genome", 
-                         host="genome-mysql.cse.ucsc.edu", 
-                         db="caePb1")
+- Try `dbConnect(MySQL(), user="datacamp_user", 
+password="learn tabular data for fun and profit",
+host="car-simulation-station.c9az8e0qjbgo.us-east-1.rds.amazonaws.com", 
+db="car_simulation_station")`
 
 
 
@@ -168,8 +169,10 @@ dbDisconnect(myConnection)
 *** =solution
 ```{r}
 # Make a connection to the MySQL database.  You'll add three parameters: host, user, and db.
-myConnection <- dbConnect(MySQL(), user="genome", 
-                                   host="genome-mysql.cse.ucsc.edu", db="caePb1")
+myConnection <- dbConnect(MySQL(), user="datacamp_user", 
+                                   password="learn tabular data for fun and profit",
+                                   host="car-simulation-station.c9az8e0qjbgo.us-east-1.rds.amazonaws.com",
+                                   db="car_simulation_station")
 
 # Issue a SQL query and return the results.  You'll need two parameters here.  You don't have to label them.
 dbGetQuery(myConnection, "SHOW TABLES;")
@@ -192,6 +195,7 @@ test_function("dbDisconnect",
               not_called_msg = "You didn't call `dbDisconnect()`!",
               incorrect_msg = "You didn't call `dbDisconnect()` with the correct arguments.")
 
+test_object("myConnection")
 
 success_msg("Good work! You were able to make a connection to a remote database and see what tables are available to you.  Now scroll around on the right to see the various tables listed in your console.")
 ```
@@ -201,7 +205,7 @@ success_msg("Good work! You were able to make a connection to a remote database 
 --- type:NormalExercise lang:r xp:100 skills:1 key:1d7b5e9b29
 ## Getting the contents of a table
 
-So far, you can connect to a data *server*, connect to a specific database on a server, and list tables.  In the UCSC example, there were many databases, each with multiple tables containing data relating to genomics.  However, in the case of CAR's Tabular Data Warehouse, we're really only talking about a single database, with many tables.  As a reminder, the tables in the CAR Tabular Data Warehouse include:
+So far, you can connect to a data *server*, connect to a specific database on a server, and list tables.  In our simulated data example, there are only three tables available, but the CAR Data Warehouse has many more!  As a reminder, the tables in the CAR Tabular Data Warehouse include:
 
 - Study and instrument specific tables (e.g. `study_7275_adhd_home`, which contains the ADHD Home instrument for the study named 7275)
 - Pooled raw tables (e.g. `adhd_home_raw`, which contains unaltered ADHD Home data from multiple studies)
@@ -213,13 +217,12 @@ Let's practice getting a table from SQL and importing its content into R.
 
 
 *** =instructions
-We've given you all the previous code that connects you to the database.  You need to create an R object titled mRNA that contains all the items (use SELECT *) from the table all_mrna.  Note that in table names (and other names -- column names, database names, etc.), capitalization matters!
+We've given you all the previous code that connects you to the database.  You need to create an R object titled adhdHome that contains all the items (use SELECT *) from the table adhd\_home\_cleaned.  Note that in table names (and other names -- column names, database names, etc.), capitalization matters!
 
-Once you populate the table mRNA, please do the following:
+Once you populate the table adhdHome, please do the following:
 
 - View the first few rows, using head()
-- Create a table that shows the values of the `strand` column (use `table()`)
-
+- Create a table that shows the values of the `q1` column (use `table()`)
 
 
 *** =hint
@@ -236,12 +239,13 @@ Once you populate the table mRNA, please do the following:
 ```{r}
 # Make a MySQL connection
 library(RMySQL)
-myConnection <- dbConnect(MySQL(), user="genome", 
-                                   host="genome-mysql.cse.ucsc.edu", 
-                                   db="caePb1")
+myConnection <- dbConnect(MySQL(), user="datacamp_user", 
+                                   password="learn tabular data for fun and profit",
+                                   host="car-simulation-station.c9az8e0qjbgo.us-east-1.rds.amazonaws.com",
+                                   db="car_simulation_station")
 
 # Create a data frame from a SQL table                                 
-mRNA <- # Add code here!
+adhdHome <- # Add code here!
 
 # Be polite!
 dbDisconnect(myConnection)
@@ -250,7 +254,7 @@ dbDisconnect(myConnection)
 
 # View the first few rows of your data frame, using head()
 
-# Create a table that shows the values of the strand column (use table())
+# Create a table that shows the values of the q1 column (use table())
                                    
 ```
 
@@ -258,12 +262,13 @@ dbDisconnect(myConnection)
 ```{r}
 # Make a MySQL connection
 library(RMySQL)
-myConnection <- dbConnect(MySQL(), user="genome", 
-                          host="genome-mysql.cse.ucsc.edu", 
-                          db="caePb1")
+myConnection <- dbConnect(MySQL(), user="datacamp_user", 
+                                   password="learn tabular data for fun and profit",
+                                   host="car-simulation-station.c9az8e0qjbgo.us-east-1.rds.amazonaws.com",
+                                   db="car_simulation_station")
 
 # Create a data frame from a SQL table                              
-mRNA <- dbGetQuery(myConnection, "SELECT * from all_mrna")
+adhdHome <- dbGetQuery(myConnection, "SELECT * from adhd_home_cleaned")
 
   
 # Be polite!
@@ -272,10 +277,10 @@ dbDisconnect(myConnection)
 # Now you have a data frame, and you've politely dropped the connection.
 
 # View the first few rows of your data frame, using head()
-head(mRNA)
+head(adhdHome)
 
-# Create a table that shows the values of the strand column (use table())
-table(mRNA$strand)
+# Create a table that shows the values of the q1 column (use table())
+table(adhdHome$q1)
 ```
 
 *** =sct
@@ -287,6 +292,6 @@ test_function("table",
               not_called_msg = "You didn't call `table()`!",
               incorrect_msg = "You didn't call `table()` with the correct arguments.")
 test_object("myConnection")
-test_object("mRNA")
+test_object("adhdHome")
 success_msg("Right on!  That's the first step.")
 ```
